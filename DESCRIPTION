@@ -21,3 +21,5 @@ Encoding: UTF-8
 Packaged: 2019-05-01 09:19:28 UTC; tim.foster
 NeedsCompilation: yes
 RoxygenNote: 6.1.1
+URL: https://github.com/aquaMetrics/fcs2
+BugReports: https://github.com/aquaMetrics/fcs2/issues
