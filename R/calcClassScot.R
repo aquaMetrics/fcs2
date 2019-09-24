@@ -1,6 +1,6 @@
-#' Calculate Classification Results
+#' Calculate Classification Results for Scotland
 #'
-#' R Script for calculating new EQRs (for latest FCS2 model)
+#' R Script for calculating new EQRs (for latest FCS2 model) for Scotland
 #'
 #' @param data dataframe with columns:
 #' \describe{

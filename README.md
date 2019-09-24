@@ -18,7 +18,7 @@ library(devtools)
 install_github("aquaMetrics/fcs2")
 ```
 
-Run the demo dataset through the `calcClassScot` function to get predicted scores:
+Run the demo dataset through the `calcClassScot` function to get classification output for Scotland:
 
 ```
 results <- calcClassScot(data = fcs2::demo_data)
