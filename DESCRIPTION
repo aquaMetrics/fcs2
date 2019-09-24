@@ -1,0 +1,23 @@
+Package: fcs2
+Type: Package
+Title: Fisheries Classification Scheme 2 For SNIFFER
+Version: 1.0
+Date: 2011-04-28
+Author: David Wyncoll <d.wyncoll@hrwallingford.co.uk> of HR Wallingford <www.hrwallingford.co.uk> for SNIFFER <www.sniffer.org.uk>
+Maintainer: Carlos Ruiz <carlos.ruiz@sepa.org.uk>
+Description: Provides functions that carry out SNIFFER's implementation of the Environment Agency's Fisheries Classification Scheme 2 (FCS2).
+	This package was developed for use in Scotland, Northern Ireland and the Republic of Ireland as part of SNIFFER project WFD68c: Science Work.
+Depends: R (>= 3.4)
+Suggests:
+    BRugs,
+    maptools,
+    rpanel,
+    INLA,
+    testthat (>= 2.1.0)
+SystemRequirements: OpenBUGS (available via BRugs)
+License: GPL-3 + file LICENSE
+LazyLoad: yes
+Encoding: UTF-8
+Packaged: 2019-05-01 09:19:28 UTC; tim.foster
+NeedsCompilation: yes
+RoxygenNote: 6.1.1
