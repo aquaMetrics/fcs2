@@ -4,10 +4,10 @@
 #' model on a map of the spatial regions.
 #'
 #'
-#' @param map a \code{\linkS4class{SpatialPolygonsDataFrame}} object containing
+#' @param map a \code{SpatialPolygonsDataFrame} object containing
 #' polygons and a data frame corresponding to the regions used for a spatial
 #' term in the \acronym{FCS2} model.  This will usually be generated from an
-#' ESRI shapefile using \code{\link{readShapePoly}}.
+#' ESRI shapefile using \code{readShapePoly}.
 #' @param fit an \code{"fcs2Fit"} object containing \acronym{INLA} or
 #' \acronym{BUGS} model fits, as returned from \code{\link{fcs2FitModel}}.  The
 #' model should include a \code{\link{spatial}} term in the abundance and/or
