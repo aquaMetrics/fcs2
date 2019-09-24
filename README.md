@@ -28,7 +28,7 @@ data <- read.csv(file = "YOUR_FILE.csv")
 
 results <- calcClassScot(data)
 
-write.csv(results,file = "YOUR_REUSULTS.csv")
+write.csv(results, file = "YOUR_RESULTS.csv")
 ```
 
 ## Contributing 
