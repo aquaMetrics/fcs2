@@ -8,7 +8,7 @@ Provides functions that carry out SNIFFER's implementation of the Environment Ag
 
 ## Quick Start
 
-Installed (openBUGS)[http://www.openbugs.net/w/Downloads] on your machine 
+Installed [openBUGS](http://www.openbugs.net/w/Downloads) on your computer 
 
 In R: Install the development version from GitHub:
 
