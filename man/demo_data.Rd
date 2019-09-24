@@ -11,4 +11,7 @@ demo_data
 \description{
 A dataset containing demo data.
 }
+\examples{
+\dontrun{demo_data}
+}
 \keyword{datasets}

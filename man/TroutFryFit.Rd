@@ -11,4 +11,7 @@ TroutFryFit
 \description{
 A dataset containing model data.
 }
+\examples{
+\dontrun{TroutFryFit}
+}
 \keyword{datasets}

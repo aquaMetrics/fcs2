@@ -11,4 +11,7 @@ SalmonFryFit
 \description{
 A dataset containing model data.
 }
+\examples{
+\dontrun{SalmonFryFit}
+}
 \keyword{datasets}

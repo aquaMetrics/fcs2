@@ -8,12 +8,15 @@ Provides functions that carry out SNIFFER's implementation of the Environment Ag
 
 ## Quick Start
 
+Installed (openBUGS)[http://www.openbugs.net/w/Downloads] on your machine 
+
 In R: Install the development version from GitHub:
 
 ```
 install.packages("devtools")
 library(devtools)
 install_github("aquaMetrics/fcs2")
+
 ```
 
 Run the demo dataset through the `calcClassScot` function to get classification output for Scotland:
