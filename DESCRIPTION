@@ -13,6 +13,7 @@ Suggests:
     maptools,
     rpanel,
     INLA,
+    sp,
     testthat (>= 2.1.0)
 SystemRequirements: OpenBUGS (available via BRugs)
 License: GPL-3 + file LICENSE
