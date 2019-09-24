@@ -2,13 +2,11 @@
 
 This R package is in development. Please don't use in production.
 
-# fcs2
+# fcs2 - Fisheries classification scheme 2
 
 Provides functions that carry out SNIFFER's implementation of the Environment Agency's Fisheries Classification Scheme 2 (FCS2). This package was developed for use in Scotland, Northern Ireland and the Republic of Ireland as part of SNIFFER project WFD68c: Science Work.
 
-## rict package
-
-An R package for calculating River Invertebrate Classification Tool (rict) predictions
+## Quick Start
 
 In R: Install the development version from GitHub:
 
