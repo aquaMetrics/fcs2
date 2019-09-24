@@ -6,12 +6,12 @@
 \title{TroutFryFit}
 \format{A data frame.}
 \usage{
-TroutFryFit
+data(TroutFryFit)
 }
 \description{
 A dataset containing model data.
 }
 \examples{
-\dontrun{TroutFryFit}
+\dontrun{data(TroutFryFit)}
 }
 \keyword{datasets}

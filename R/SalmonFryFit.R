@@ -3,7 +3,8 @@
 #' A dataset containing model data.
 #'
 #' @docType data
+#' @usage data(SalmonFryFit)
 #' @format A data frame.
 #' @examples
-#' \dontrun{SalmonFryFit}
+#' \dontrun{data(SalmonFryFit)}
 "SalmonFryFit"
