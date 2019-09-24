@@ -209,23 +209,15 @@ calcClassScot <- function(data) {
   #save(file = "ScotDataAtRef.RData", data)
 
 
-  ## Load all model fits (assuming these fit files (named *Fit.RData) are
-  ## in the current directory)
+  ## Load all model fits
   ## WARNING: Loading all at once takes up a lot of memory!
-  ##
   cat("Loading model fits\n")
   flush.console()
 
-  # set up fit names etc
-  fitNames <- paste(c("SalmonFry", "SalmonParr", "TroutFry", "TroutParr"),
-                    "Fit", sep = "")
-  fitFiles <- paste(fitNames, "RData", sep = ".")
-
-  # load all fits
-  for (fle in fitFiles) {
-    load(file = fle)
-  }
-
+  SalmonFryFit <- fcs2:::SalmonFryFit
+  SalmonParrFit <- fcs2:::SalmonParrFit
+  TroutFryFit <- fcs2:::TroutFryFit
+  TroutParrFit <- fcs2:::TroutParrFit
   ## Calculate all EQRs (single and joint EQRs for each survey and joined
   ## by waterbody)
   ## NOTE: This may take some time! - reduce n.samples and n.sims to speed

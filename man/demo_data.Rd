@@ -4,11 +4,11 @@
 \name{demo_data}
 \alias{demo_data}
 \title{Demo data}
-\format{A data frame}
+\format{A data frame.}
 \usage{
 demo_data
 }
 \description{
-A dataset containing demo data
+A dataset containing demo data.
 }
 \keyword{datasets}
