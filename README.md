@@ -29,6 +29,8 @@ Or to run your own data (save as .csv to working directory):
 data <- read.csv(file = "YOUR_FILE.csv")
 
 results <- calcClassScot(data)
+
+write.csv(results,file = "YOUR_REUSULTS.csv")
 ```
 
 ## Contributing 

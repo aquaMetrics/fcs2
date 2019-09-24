@@ -67,12 +67,12 @@
 #'  \item{Trout_parr.Run3Total}{Total salmon parr (1++) caught in Run 3. Leave blank if no 3rd run fished	Field data 	0-43}
 #'  \item{Trout_parr.Run4Total}{Total salmon parr (1++) caught in Run 4. Leave blank if no 4th run fished	Field data 	0-25}
 #' }
-#' @return
+#' @return dataframe
 #' @export
 #'
 #' @examples
 #'   \dontrun{
-#'   results <- calcClassScot(data = fcs2::demo_data)
+#'   results <- calcClassScot(data = fcs2::demo_data)#'
 #' }
 calcClassScot <- function(data) {
   colnames(data) <- sub("#", ".", colnames(data))
@@ -300,10 +300,10 @@ calcClassScot <- function(data) {
 
   # write to CSV
   ## NOTE: file should now be tidied up manually in Excel
-  write.csv(file = "EQRSummary.csv", eqrSum, row.names = TRUE, na = "")
+  #write.csv(file = "EQRSummary.csv", eqrSum, row.names = TRUE, na = "")
 
   # save to R workspace
-  save(file = "EQRSummary.RData", eqrSum)
-
+  #save(file = "EQRSummary.RData", eqrSum)
   cat("Done\n")
+  return(eqrSum)
 }
