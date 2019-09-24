@@ -9,10 +9,10 @@ plotSpatialTerm(map, fit, type = "mean", abundance = TRUE,
   inla = !posterior, ...)
 }
 \arguments{
-\item{map}{a \code{\linkS4class{SpatialPolygonsDataFrame}} object containing
+\item{map}{a \code{SpatialPolygonsDataFrame} object containing
 polygons and a data frame corresponding to the regions used for a spatial
 term in the \acronym{FCS2} model.  This will usually be generated from an
-ESRI shapefile using \code{\link{readShapePoly}}.}
+ESRI shapefile using \code{readShapePoly}.}
 
 \item{fit}{an \code{"fcs2Fit"} object containing \acronym{INLA} or
 \acronym{BUGS} model fits, as returned from \code{\link{fcs2FitModel}}.  The
