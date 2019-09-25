@@ -1,5 +1,9 @@
 #' Missing Values in EQR Samples
 #'
+#' @encoding UTF-8
+#' @title Missing Values in EQR Samples
+#'
+#' @description
 #' Extract information about surveys (or water bodies, sites, etc) that were
 #' removed when calculating the \acronym{EQR} due to missing values.
 #'
@@ -7,6 +11,7 @@
 #' @param object an object of class \code{"fcs2EQR"} containing Monte Carlo
 #' \acronym{EQR} samples, as calculated from \code{\link{fcs2SingleEQR}},
 #' \code{\link{fcs2JointEQR}} or \code{\link{fcs2JointAndSingleEQR}}.
+#' @param \dots Not currently used.
 #' @return If the \acronym{EQR} object contains \acronym{EQR} samples for
 #' multiple surveys, the returned vector indicates surveys in the data frame
 #' that were removed due to missing observations or covariates.
@@ -20,6 +25,6 @@
 #' \code{\link{fcs2JointAndSingleEQR}} for generating \acronym{EQR} samples.
 #' @export
 na.action.fcs2EQR <-
-function(object)
+function(object, ...)
     attr(object, "na.action")
 

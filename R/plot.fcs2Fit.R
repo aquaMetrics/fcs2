@@ -1,5 +1,9 @@
 #' Plot FCS2 Model Fit
 #'
+#' @encoding UTF-8
+#' @title Plot FCS2 Model Fit
+#'
+#' @description
 #' Produces density plots of the prior and posterior estimates of each variable
 #' in the \acronym{FCS2} model.  Can also produce series plots that display the
 #' relationship between each covariate and the corresponding abundance or
@@ -27,12 +31,14 @@
 #' the false assumption of independence between the linear parameters.
 #' Therefore the \acronym{INLA} relationship line should only be used as a
 #' rough guide when multiple terms exist.
+#' @param \dots Not used in this function
 #' @seealso \code{\link{fcs2FitModel}}
 #' @keywords hplot
+
 #' @export
 plot.fcs2Fit <-
 function(x, variables = variable.names(x), prior = TRUE, posterior = !is.null(x$bugsFit),
-         inla = !posterior, legend = TRUE, samples = FALSE, groupLinearVars = posterior)
+         inla = !posterior, legend = TRUE, samples = FALSE, groupLinearVars = posterior, ...)
 {
     # check inputs
     if (posterior && is.null(x$bugsFit))

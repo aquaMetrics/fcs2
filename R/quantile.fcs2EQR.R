@@ -1,9 +1,13 @@
 #' Quantiles of an EQR Sample
 #'
+#' @encoding UTF-8
+#' @title Quantiles of an EQR Sample
+#'
+#' @description
 #' Estimates quantiles of an \acronym{EQR} variable from a collection of Monte
 #' Carlo \acronym{EQR} samples.
 #'
-#'
+#' @name quantile
 #' @param x an object of class \code{"fcs2EQR"} containing Monte Carlo
 #' \acronym{EQR} samples, as calculated from \code{\link{fcs2SingleEQR}},
 #' \code{\link{fcs2JointEQR}} or \code{\link{fcs2JointAndSingleEQR}}.
@@ -13,6 +17,7 @@
 #' surveys (or sites/etc if surveys were joined) and species contained in
 #' \code{x}.
 #' @seealso \code{\link{mean.fcs2EQR}}
+
 #' @export
 quantile.fcs2EQR <-
 function(x, probs = seq(0, 1, 0.25), ...)

@@ -3,6 +3,7 @@
 #' Provides a more detailed EQR summary
 #'
 #' @param object summary object
+#' @param \dots Not currently used.
 #'
 #' @return detailed EQR summary object
 #' @export
@@ -11,8 +12,9 @@
 #' \dontrun{
 #' summary.fcs2EQR(object = data)
 #' }
+#' @export
 summary.fcs2EQR <-
-function(object)
+function(object, ...)
 {
     if (length(dim(object)) == 2)
         apply(object, 2, summary)

@@ -6,6 +6,7 @@
 #' @param x an object of class \code{"fcs2EQR"} containing Monte Carlo
 #' \acronym{EQR} samples, as calculated from \code{\link{fcs2SingleEQR}},
 #' \code{\link{fcs2JointEQR}} or \code{\link{fcs2JointAndSingleEQR}}.
+#' @param \dots Not currently used.
 #' @return invisibly returns the \code{"fcs2EQR"} object \code{x}.
 #' @seealso \code{\link{summary.fcs2EQR}} for a more detailed summary;\cr
 #' \code{\link{fcs2SingleEQR}}, \code{\link{fcs2JointEQR}} or
@@ -13,7 +14,7 @@
 #' @keywords print
 #' @export
 print.fcs2EQR <-
-function(x)
+function(x, ...)
 {
     cat("\n")
     cat("EQR samples:\n")

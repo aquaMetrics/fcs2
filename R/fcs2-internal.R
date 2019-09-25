@@ -1,6 +1,7 @@
+#' @import stats
+
 # Internal (undocumented) functions that should not typically be called by the user
 # Extracts or calculates the total number of fish caught over all runs
-
 .allRunsTotal <-
 function(dataFrame, runTotalVars = NULL, allRunsTotalVar = NULL, allRunsRangeVars = NULL, nRunsVar = NULL, subset = 1:nrow(dataFrame), allowRange = FALSE)
 {
@@ -119,9 +120,9 @@ function(fit)
     # add catch total data
     if (sum(dataType == "run") > 0) {
         if (!fit$multiRun)
-            bugsData$catch=modelMatrix[, fit$runTotalVars[1]]
+            bugsData$catch <- modelMatrix[, fit$runTotalVars[1]]
         else
-            bugsData$catch=as.matrix(modelMatrix[, fit$runTotalVars])
+            bugsData$catch <- as.matrix(modelMatrix[, fit$runTotalVars])
 
         # add additional variables for multiRun
         if (fit$multiRun) {
@@ -423,11 +424,10 @@ function(fit)
 
 ## Function called when unloading 'fcs2' package.
 ## Detaches compiled code
-.Last.lib <-
-function(libpath)
-{
-    library.dynam.unload("fcs2", libpath=libpath)
-}
+#.onUnload <- function(libpath)
+#{
+#    library.dynam.unload("fcs2", libpath)
+#}
 
 
 ## Calculates the significance probability from BUGS samples

@@ -7,6 +7,7 @@
 #' @param inla from summary object
 #' @param posterior from summary object
 #' @param allVars boolean
+#' @param \dots Not currently used.
 #'
 #' @return detailed summary object
 #' @seealso summary.fcs2Fit summary.fcs2Fit print.summary.fcs2Fit
@@ -16,8 +17,10 @@
 #' \dontrun{
 #' summary.fcs2Fit(object = data)
 #' }
+#' @export
 summary.fcs2Fit <-
-function(object, prior = TRUE, inla = is.null(object$bugsFit), posterior = !is.null(object$bugsFit), allVars = FALSE)
+function(object, prior = TRUE, inla = is.null(object$bugsFit),
+         posterior = !is.null(object$bugsFit), allVars = FALSE, ...)
 {
     ret <- list()
 

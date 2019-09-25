@@ -4,10 +4,12 @@
 \alias{summary.fcs2EQR}
 \title{Detailed EQR summary}
 \usage{
-\method{summary}{fcs2EQR}(object)
+\method{summary}{fcs2EQR}(object, ...)
 }
 \arguments{
 \item{object}{summary object}
+
+\item{\dots}{Not currently used.}
 }
 \value{
 detailed EQR summary object

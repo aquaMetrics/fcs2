@@ -1,5 +1,9 @@
 #' Plot EQR Samples
 #'
+#' @encoding UTF-8
+#' @title Plot EQR Samples
+#'
+#' @description
 #' Plots a series of \acronym{EQR} variables or the corresponding probabilities
 #' of each \acronym{WFD} class.
 #'
@@ -35,6 +39,7 @@
 #' \code{\link{fcs2InteractivePrediction}} can be used to interactively view
 #' how the \acronym{EQR} changes with covariates.
 #' @keywords hplot
+
 #' @export
 plot.fcs2EQR <-
 function(x, survey = 1, species = 1, boundaries, type = "density", title, adjust = 1, ...)
