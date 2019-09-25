@@ -4,7 +4,7 @@
 \alias{print.fcs2Fit}
 \title{Printing an FCS2 Model Fit}
 \usage{
-\method{print}{fcs2Fit}(x, inla = is.null(x$bugsFit))
+\method{print}{fcs2Fit}(x, inla = is.null(x$bugsFit), ...)
 }
 \arguments{
 \item{x}{an object of class \code{"fcs2Fit"}, usually returned by
@@ -12,6 +12,8 @@
 
 \item{inla}{whether to summarise approximate model fits obtained from
 \acronym{INLA}, if available.}
+
+\item{\dots}{Not currently used.}
 }
 \value{
 invisibly returns the \code{"fcs2Fit"} object \code{x}.

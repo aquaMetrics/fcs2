@@ -4,12 +4,14 @@
 \alias{print.fcs2EQR}
 \title{Printing EQR Samples}
 \usage{
-\method{print}{fcs2EQR}(x)
+\method{print}{fcs2EQR}(x, ...)
 }
 \arguments{
 \item{x}{an object of class \code{"fcs2EQR"} containing Monte Carlo
 \acronym{EQR} samples, as calculated from \code{\link{fcs2SingleEQR}},
 \code{\link{fcs2JointEQR}} or \code{\link{fcs2JointAndSingleEQR}}.}
+
+\item{\dots}{Not currently used.}
 }
 \value{
 invisibly returns the \code{"fcs2EQR"} object \code{x}.

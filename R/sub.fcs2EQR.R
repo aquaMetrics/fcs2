@@ -1,3 +1,4 @@
+#' @export
 ## Allow subset of eqr object to give another eqr object
 `[.fcs2EQR` <- function(eqr, samples = 1:nrow(eqr), survey = 1:ncol(eqr), species, drop = TRUE)
 {
@@ -25,7 +26,7 @@
             }
             return(eqr[smpls])
         }
-    
+
         return(eqr[samples])
     }
 

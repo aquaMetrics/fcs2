@@ -7,6 +7,7 @@
 #' \code{\link{fcs2FitModel}}.
 #' @param inla whether to summarise approximate model fits obtained from
 #' \acronym{INLA}, if available.
+#' @param \dots Not currently used.
 #' @return invisibly returns the \code{"fcs2Fit"} object \code{x}.
 #' @seealso %% ~~objects to See Also as \code{\link{help}}, ~~~
 #' \code{\link{summary.fcs2Fit}} for a more detailed summary.
@@ -14,7 +15,7 @@
 #' @keywords print
 #' @export
 print.fcs2Fit <-
-function(x, inla = is.null(x$bugsFit))
+function(x, inla = is.null(x$bugsFit), ...)
 {
     cat("\n")
 

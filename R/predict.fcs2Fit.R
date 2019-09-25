@@ -28,6 +28,7 @@
 #' \eqn{\rho} can optionally be given to save recalculation if already
 #' available.  This is assumed to have been calculated from
 #' \code{\link{prevalence}} using the same arguments as above.
+#' @param \dots Not currently used.
 #' @return a vector containing the expected total catch for each survey
 #' selected.
 #' @seealso \code{\link{fcs2FitModel}} for fitting the \acronym{FCS2} model.\cr
@@ -35,7 +36,7 @@
 #' total catch.
 #' @export
 predict.fcs2Fit <-
-function(object, newData, subset = 1:nrow(newData), na.action, mu, rho)
+function(object, newData, subset = 1:nrow(newData), na.action, mu, rho, ...)
 {
     # check 'newData' provided
     if (missing(newData))

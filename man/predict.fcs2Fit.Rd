@@ -5,7 +5,7 @@
 \title{Predicted Total Catch}
 \usage{
 \method{predict}{fcs2Fit}(object, newData, subset = 1:nrow(newData),
-  na.action, mu, rho)
+  na.action, mu, rho, ...)
 }
 \arguments{
 \item{object}{an \code{"fcs2Fit"} object containing a full \acronym{FCS2}
@@ -37,6 +37,8 @@ arguments as above.}
 \eqn{\rho} can optionally be given to save recalculation if already
 available.  This is assumed to have been calculated from
 \code{\link{prevalence}} using the same arguments as above.}
+
+\item{\dots}{Not currently used.}
 }
 \value{
 a vector containing the expected total catch for each survey

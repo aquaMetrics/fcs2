@@ -6,7 +6,7 @@
 \usage{
 \method{summary}{fcs2Fit}(object, prior = TRUE,
   inla = is.null(object$bugsFit), posterior = !is.null(object$bugsFit),
-  allVars = FALSE)
+  allVars = FALSE, ...)
 }
 \arguments{
 \item{object}{summary object}
@@ -18,6 +18,8 @@
 \item{posterior}{from summary object}
 
 \item{allVars}{boolean}
+
+\item{\dots}{Not currently used.}
 }
 \value{
 detailed summary object
