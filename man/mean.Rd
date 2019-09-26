@@ -3,9 +3,12 @@
 \encoding{UTF-8}
 \name{mean}
 \alias{mean}
+\alias{mean.fcs2EQR}
 \title{Mean EQR}
 \usage{
 mean(x, ...)
+
+\method{mean}{fcs2EQR}(x, ...)
 }
 \arguments{
 \item{x}{an object of class \code{"fcs2EQR"} containing Monte Carlo

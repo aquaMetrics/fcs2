@@ -135,11 +135,11 @@ function(fit, dataFrame, subset = 1:nrow(dataFrame), na.action, n.sims = 100, ci
     eqr <- sort(eqr)
     n <- length(eqr)
     prob <- ppoints(n)
-    plot(0, 0, col="white", xlim=c(0, 1), ylim=c(0, 1),
+    graphics::plot(0, 0, col="white", xlim=c(0, 1), ylim=c(0, 1),
          xlab="Theoretical Probabilities", ylab="Sample Probabilities", main=title)  #paste("P-P plot:", title))
-    abline(0, 1, col="grey50")
-    abline(v=c(0, 1), h=c(0, 1), col="grey80")
-    lines(prob, eqr, col="blue")
+    graphics::abline(0, 1, col="grey50")
+    graphics::abline(v=c(0, 1), h=c(0, 1), col="grey80")
+    graphics::lines(prob, eqr, col="blue")
 
 
     ## add CI
@@ -183,9 +183,9 @@ function(fit, dataFrame, subset = 1:nrow(dataFrame), na.action, n.sims = 100, ci
             ci[, j] <- quantile(sampleEQRs[,j], cirange, name=FALSE)
 
         # add to plot
-        lines(prob, ci[1,], lty=2)
-        lines(prob, ci[2,], lty=2)
-        lines(prob, eqr, col="blue") # make sure blue line on top
+        graphics::lines(prob, ci[1,], lty=2)
+        graphics::lines(prob, ci[2,], lty=2)
+        graphics::lines(prob, eqr, col="blue") # make sure blue line on top
 
         # count proportion of data points outside CI
         prop <- sum( eqr >= ci[1,] & eqr <= ci[2,] ) / n

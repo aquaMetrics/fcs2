@@ -1,13 +1,25 @@
-#' Zinbinom
-#'
 #' Zero-inflated Negative Binomial Distributions.
 #'
-#' @aliases zinbinom
+#' @encoding UTF-8
+#' @title Zero-inflated Negative Binomial Distributions.
+#'
+#' @name zinbinom
+#' @aliases dzimbinom pzinbinom qzinbinom rzinbinom rzinbinom_constrained
+#' @usage dzinbinom(x, size, prob, zeroprob, nbmean)
+#' @usage pzinbinom(q, size, prob, zeroprob, nbmean)
+#' @usage qzinbinom(p, size, prob, zeroprob, nbmean)
+#' @usage rzinbinom(n, size, prob, zeroprob, nbmean)
+#' @usage rzinbinom_constrained(n, size, prob, zeroprob, nbmean, min = 0, max = Inf)
 #' @param x x
+#' @param q q
+#' @param p p
+#' @param n n
 #' @param size size
 #' @param prob prob
 #' @param zeroprob  zero prob
 #' @param nbmean nbmean
+#' @param min min
+#' @param max max
 #'
 #' @return zero-inflated Negative Binomial Distributions.
 #' @export
@@ -31,16 +43,7 @@ function(x, size, prob, zeroprob, nbmean)  #, log = FALSE)
 }
 
 
-## pzinbinom
-#' @rdname pzinbinom
-#' @title Zinbinom
-#'
-#' @description Distributions.
-#' @param q q
-#' @param size size
-#' @param prob prob
-#' @param zeroprob  zero prob
-#' @param nbmean nbmean
+#' @rdname zinbinom
 #' @export
 pzinbinom <-
 function(q, size, prob, zeroprob, nbmean)  #, lower.tail = TRUE, log.p = FALSE)
@@ -55,17 +58,7 @@ function(q, size, prob, zeroprob, nbmean)  #, lower.tail = TRUE, log.p = FALSE)
 }
 
 
-## qzinbinom
-
-#' @rdname qzinbinom
-#' @title Zinbinom
-#'
-#' @description Distributions.
-#' @param p p
-#' @param size size
-#' @param prob prob
-#' @param zeroprob  zero prob
-#' @param nbmean nbmean
+#' @rdname zinbinom
 #' @export
 qzinbinom <-
 function(p, size, prob, zeroprob, nbmean)  #, lower.tail = TRUE, log.p = FALSE)
@@ -76,16 +69,7 @@ function(p, size, prob, zeroprob, nbmean)  #, lower.tail = TRUE, log.p = FALSE)
 }
 
 
-## rzinbinom
-#' @rdname rzinbinom
-#' @title Zinbinom
-#'
-#' @description Distributions.
-#' @param n n
-#' @param size size
-#' @param prob prob
-#' @param zeroprob  zero prob
-#' @param nbmean nbmean
+#' @rdname zinbinom
 #' @export
 rzinbinom <-
 function(n, size, prob, zeroprob, nbmean)
@@ -103,18 +87,7 @@ function(n, size, prob, zeroprob, nbmean)
 }
 
 
-## rzinbinom_constrained
-#' @rdname rzinbinom_constrained
-#' @title Zinbinom
-#'
-#' @description Distributions.
-#' @param n n
-#' @param size size
-#' @param prob prob
-#' @param zeroprob  zero prob
-#' @param nbmean nbmean
-#' @param min min
-#' @param max max
+#' @rdname zinbinom
 #' @export
 rzinbinom_constrained <-
 function(n, size, prob, zeroprob, nbmean, min = 0, max = Inf)

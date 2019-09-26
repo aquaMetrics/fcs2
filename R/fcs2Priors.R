@@ -69,8 +69,8 @@ function(parameters = list(), print = TRUE, plot = TRUE, prob = 0.95, ...)
     # set up multiple plots
     if (plot && length(parameters) > 1) {
         w <- ceiling(sqrt(length(parameters)))
-        par.old <- par(mfrow=c(w - (length(parameters) <= w*(w-1)), w))
-        on.exit(par(par.old))
+        par.old <- graphics::par(mfrow=c(w - (length(parameters) <= w*(w-1)), w))
+        on.exit(graphics::par(par.old))
     }
 
     # set colour for plots
@@ -126,7 +126,7 @@ function(parameters = list(), print = TRUE, plot = TRUE, prob = 0.95, ...)
                 x <- seq(0, 1, l=200)
                 yplt <- dbeta(x, a, b)
                 plot(x, yplt, t='l', ylim=c(0, max(yplt[yplt < Inf])), xlab="", ylab="Density", main=varName, col=col, lty=2)
-                abline(h=0, v=c(0, 1), col="grey80")
+                graphics::abline(h=0, v=c(0, 1), col="grey80")
             }
 
         } else if (varName == "r") {
@@ -182,7 +182,7 @@ function(parameters = list(), print = TRUE, plot = TRUE, prob = 0.95, ...)
             if (plot) {
                 x <- seq(0, qlnorm(0.995, mu, 1 / sqrt(tau)), l=200)
                 plot(x, dlnorm(x, mu, 1 / sqrt(tau)), t='l', xlab="", ylab="Density", main=varName, col=col, lty=2)
-                abline(h=0, v=0, col="grey80")
+                graphics::abline(h=0, v=0, col="grey80")
             }
 
         } else if (max(pmatch(c("beta", "gamma"), varName, nomatch=0)) > 0) {
@@ -227,7 +227,7 @@ function(parameters = list(), print = TRUE, plot = TRUE, prob = 0.95, ...)
             if (plot) {
                 x <- seq(qnorm(0.005, mean, sd), qnorm(0.995, mean, sd), l=200)
                 plot(x, dnorm(x, mean, sd), t='l', ylim=c(0, dnorm(mean, mean, sd)), xlab="", ylab="Density", main=varName, col=col, lty=2)
-                abline(h=0, col="grey80")
+                graphics::abline(h=0, col="grey80")
             }
 
         } else if (max(pmatch(c("sigma", "nu", "tau", "phi"), varName, nomatch=0)) > 0) {
@@ -343,7 +343,7 @@ function(parameters = list(), print = TRUE, plot = TRUE, prob = 0.95, ...)
             if (plot) {
                 x <- seq(0, qhyperprior(0.995, a, b), l=200)
                 plot(x, dhyperprior(x, a, b), t='l', xlab="", ylab="Density", main=scaleVarName, col=col, lty=2)
-                abline(h=0, v=0, col="grey80")
+                graphics::abline(h=0, v=0, col="grey80")
             }
 
         } else {

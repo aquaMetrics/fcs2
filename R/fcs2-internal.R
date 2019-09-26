@@ -1,4 +1,7 @@
 #' @import stats
+#' @import utils
+#' @import INLA
+#' @import R2OpenBUGS
 
 # Internal (undocumented) functions that should not typically be called by the user
 # Extracts or calculates the total number of fish caught over all runs
@@ -378,8 +381,7 @@ function(fit)
 .fcs2SetRWBoundaries <-
 function(fit)
 {
-    attach(fit, warn.conflicts=FALSE)
-    on.exit(detach(fit))
+  with(fit, {
 
     if (length(rwNoLevels) > 0) {
         for (i in 1:length(rwNoLevels)) {
@@ -410,6 +412,7 @@ function(fit)
     }
 
     rwBoundaries
+  })
 }
 
 

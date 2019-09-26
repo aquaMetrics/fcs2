@@ -7,12 +7,17 @@ Maintainer: Carlos Ruiz <carlos.ruiz@sepa.org.uk>
 Description: Provides functions that carry out SNIFFER's implementation of the Environment Agency's Fisheries Classification Scheme 2 (FCS2).
 	This package was developed for use in Scotland, Northern Ireland and the Republic of Ireland as part of SNIFFER project WFD68c: Science Work.
 Depends: R (>= 3.4.0)
-Imports: stats
+Imports:
+    graphics,
+    grDevices,
+    utils,
+    stats,
+    INLA,
+    R2OpenBUGS
 Suggests:
     BRugs,
     maptools,
     rpanel,
-    INLA,
     sp,
     testthat (>= 2.1.0)
 SystemRequirements: OpenBUGS (available via BRugs)

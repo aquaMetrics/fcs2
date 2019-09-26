@@ -51,7 +51,7 @@ function(x, inla = is.null(x$bugsFit), ...)
                 t <- function(x)
                     sqrt(1 / x)
                 for (i in 1:(nrow(x$inlaFits$muFit$summary.hyperpar) - 1))
-                    means <- c(means, inla.expectation(t, x$inlaFits$muFit$marginals.hyperpar[[i + 1]]))
+                    means <- c(means, inla.emarginal(t, x$inlaFits$muFit$marginals.hyperpar[[i + 1]]))
             }
             names(means) <- variable.names(x, q=FALSE, r=TRUE, prevalence=FALSE, rw=FALSE, spatial=FALSE, hyperparams="scale")
 
@@ -68,7 +68,7 @@ function(x, inla = is.null(x$bugsFit), ...)
             t <- function(x)
                 sqrt(1 / x)
             for (i in 1:nrow(x$inlaFits$rhoFit$summary.hyperpar))
-                means <- c(means, inla.expectation(t, x$inlaFits$rhoFit$marginals.hyperpar[[i]]))
+                means <- c(means, inla.emarginal(t, x$inlaFits$rhoFit$marginals.hyperpar[[i]]))
         }
         names(means) <- variable.names(x, q=FALSE, r=FALSE, abundance=FALSE, rw=FALSE, spatial=FALSE, hyperparams="scale")
 

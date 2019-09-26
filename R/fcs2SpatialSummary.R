@@ -36,7 +36,7 @@ fcs2SpatialSummary <-
 function(map, fit, posterior = !is.null(fit$bugsFit), inla = !posterior, abundance = TRUE, prevalence = TRUE)
 {
     # load package 'sp'
-    if (!require(sp))
+    if (!requireNamespace("sp", quietly = TRUE))
         stop("`fcs2SpatialSummary' requires R package `sp' - please install using `install.packages'")
 
     # INLA

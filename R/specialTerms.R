@@ -1,12 +1,19 @@
 #' Special Non-Linear Terms for FCS2 Abundance and Prevalence Regressions
 #'
+#' @encoding UTF-8
+#' @title Special Non-Linear Terms for FCS2 Abundance and Prevalence Regressions
+#'
+#' @description
 #' Non-linear random walk and spatial terms that can be used in addition to
 #' linear terms in the \acronym{FCS2} abundance and prevalence regression
-#' equations. These functions can be used within the formulae when specifying the
-#' abundance or prevalence regression equations via the arguments
-#' \code{muFormula} and \code{rhoFormula} of \code{\link{fcs2FitModel}}.
+#' equations.
 #'
-#' @aliases specialTerms rw1 rw2 spatial
+#' @name specialTerms
+#' @aliases rw1 rw2 spatial
+#'
+#' @usage rw1(val, noLevels = 10, boundaries, scale.parameters, precision.parameters, initial.values, precision.initial.value)
+#' @usage rw2(val, noLevels = 10, boundaries, scale.parameters, precision.parameters, initial.values, precision.initial.value)
+#' @usage spatial(val, adjacency, scale.parameters, precision.parameters, initial.values, precision.initial.value)
 #'
 #' @param val a covariate to use for the non-linear term.  \code{rw1} and
 #'   \code{rw2} assume a continuous variable but \code{spatial} requires an
@@ -48,7 +55,6 @@
 #'   \code{muFormula} and \code{rhoFormula} of \code{\link{fcs2FitModel}}.
 #' @seealso \code{\link{fcs2FitModel}}
 #' @export
-
 rw1 <-
 function(val, noLevels = 10, boundaries, scale.parameters, precision.parameters, initial.values, precision.initial.value)
 {
@@ -75,7 +81,8 @@ function(val, noLevels = 10, boundaries, scale.parameters, precision.parameters,
 }
 
 
-## rw2
+#' @rdname specialTerms
+#' @export
 rw2 <-
 function(val, noLevels = 10, boundaries, scale.parameters, precision.parameters, initial.values, precision.initial.value)
 {
@@ -102,7 +109,8 @@ function(val, noLevels = 10, boundaries, scale.parameters, precision.parameters,
 }
 
 
-## spatial
+#' @rdname specialTerms
+#' @export
 spatial <-
 function(val, adjacency, scale.parameters, precision.parameters, initial.values, precision.initial.value)
 {

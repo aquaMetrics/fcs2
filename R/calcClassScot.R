@@ -1,5 +1,9 @@
 #' Calculate Classification Results for Scotland
 #'
+#' @encoding UTF-8
+#' @title Calculate Classification Results for Scotland
+#'
+#' @description
 #' R Script for calculating new EQRs (for latest FCS2 model) for Scotland
 #'
 #' @param data dataframe with columns: \describe{ \item{DataHeldBy}{Data owner
@@ -34,7 +38,7 @@
 #'   0.003-59.9} \item{AlkalinityValue}{	Alkalinity as CaCO3 (mg/L) 	Chemistry
 #'   monitoring data	0.54-263.11} \item{TotalPValue}{	Total Phosphorus as P
 #'   (mg/L) 	Chemistry monitoring data	0.006-0.505} \item{DOCValue}{	Dissolved
-#'   organic carbon<0.45μm (mg/L)	Chemistry monitoring data	2.023-24.2}
+#'   organic carbon<0.45\eqn{\mu}m (mg/L)	Chemistry monitoring data	2.023-24.2}
 #'   \item{SuspendedSolidsValue}{	Suspended solids (mg/L)	Chemistry monitoring
 #'   data	0.63-32.36} \item{HydrometricAreaNo}{	The SEPA-defined hydrometric
 #'   area which the site lies in	SEPA GIS layer}

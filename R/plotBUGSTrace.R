@@ -42,13 +42,13 @@ function(fit, variables = variable.names(fit, rw="singular", spatial="singular",
     if (length(variables) > 1) {
         if (length(variables) <= nPerPage) {
             w <- ceiling(sqrt(length(variables)))
-            par.old <- par(mfrow=c(w, w - (length(variables) <= w*(w-1))))
+            par.old <- graphics::par(mfrow=c(w, w - (length(variables) <= w*(w-1))))
 
         } else {
             w <- ceiling(sqrt(nPerPage))
-            par.old <- par(mfrow=c(w, w - (nPerPage <= w*(w-1))), ask=TRUE)
+            par.old <- graphics::par(mfrow=c(w, w - (nPerPage <= w*(w-1))), ask=TRUE)
         }
-        on.exit(par(par.old))
+        on.exit(graphics::par(par.old))
     }
 
     # set up colours
@@ -65,10 +65,10 @@ function(fit, variables = variable.names(fit, rw="singular", spatial="singular",
         else
             ylim.var <- ylim
 
-        plot(fit$bugsFit$sims.array[, chains[1], var], ylim=ylim.var, type='l', col=col[1], ylab=ylab.var, main=main.var, ...)
+        graphics::plot(fit$bugsFit$sims.array[, chains[1], var], ylim=ylim.var, type='l', col=col[1], ylab=ylab.var, main=main.var, ...)
         if (length(chains) > 1) {
             for (i in 2:length(chains))
-                lines(fit$bugsFit$sims.array[, chains[i], var], col=col[i])
+                graphics::lines(fit$bugsFit$sims.array[, chains[i], var], col=col[i])
         }
     }
 }
