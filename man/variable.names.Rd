@@ -6,9 +6,9 @@
 \alias{variable.names.fcs2Fit}
 \title{Variable Names in FCS2 Model}
 \usage{
-variable.names(object, q = object$multiRun, r = TRUE, abundance = TRUE,
-    prevalence = TRUE, linear = TRUE, rw = "group",
-    spatial = "group", hyperparams = "scale")
+\method{variable.names}{fcs2Fit}(object, q = object$multiRun, r = TRUE,
+  abundance = TRUE, prevalence = TRUE, linear = TRUE, rw = "group",
+  spatial = "group", hyperparams = "scale", ...)
 }
 \arguments{
 \item{object}{an object of class \code{"fcs2Fit"}, usually returned by \code{\link{fcs2FitModel}}.}
