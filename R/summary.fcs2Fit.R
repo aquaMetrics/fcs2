@@ -80,10 +80,11 @@ function(object, prior = TRUE, inla = is.null(object$bugsFit),
     # other data
     ret$surveyAreaVar <- object$surveyAreaVar
     ret$N <- object$N
-    if (length(object$na.action) > 0 && class(object$na.action) == "omit")
+    if (length(object$na.action) > 0 && class(object$na.action) == "omit") {
         ret$nRemoved <- length(object$na.action)
-    else if (sum(is.na(object$dataType)) > 0)
+    } else if (sum(is.na(object$dataType)) > 0) {
         ret$nMissing <- sum(is.na(object$dataType))
+    }
 
 
     # model formulae (mu and rho)
@@ -142,7 +143,7 @@ function(object, prior = TRUE, inla = is.null(object$bugsFit),
         # abundance mu
         if (!is.null(object$inlaFits$muFit)) {
             mx <- rbind(object$inlaFits$muFit$summary.hyperpar[1, , drop=FALSE],
-                        object$inlaFits$muFit$summary.fixed[, -6, drop=FALSE])
+                        object$inlaFits$muFit$summary.fixed[, -7, drop=FALSE])
 
             # add significance columns if linear or individual random terms
             if (nrow(object$inlaFits$muFit$summary.fixed) > 1 || (allVars && length(object$inlaFits$muFit$summary.random) > 0))
@@ -175,8 +176,8 @@ function(object, prior = TRUE, inla = is.null(object$bugsFit),
                 t2 <- function(object)
                     1 / object
                 for (i in 1:(nrow(object$inlaFits$muFit$summary.hyperpar) - 1)) {
-                    mean <- inla.expectation(t, object$inlaFits$muFit$marginals.hyperpar[[i + 1]])
-                    sd <- sqrt(inla.expectation(t2, object$inlaFits$muFit$marginals.hyperpar[[i + 1]]) - mean^2)
+                    mean <- inla.emarginal(t, object$inlaFits$muFit$marginals.hyperpar[[i + 1]])
+                    sd <- sqrt(inla.emarginal(t2, object$inlaFits$muFit$marginals.hyperpar[[i + 1]]) - mean^2)
                     if (ncol(mx) == 6)
                         mx <- rbind(mx, c(mean, sd, 1 / sqrt(object$inlaFits$muFit$summary.hyperpar[i + 1, 5:3, drop=FALSE]), "Signif. Pr."=NA))
                     else
@@ -233,8 +234,8 @@ function(object, prior = TRUE, inla = is.null(object$bugsFit),
             t2 <- function(object)
                 1 / object
             for (i in 1:nrow(object$inlaFits$rhoFit$summary.hyperpar)) {
-                mean <- inla.expectation(t, object$inlaFits$rhoFit$marginals.hyperpar[[i]])
-                sd <- sqrt(inla.expectation(t2, object$inlaFits$rhoFit$marginals.hyperpar[[i]]) - mean^2)
+                mean <- inla.emarginal(t, object$inlaFits$rhoFit$marginals.hyperpar[[i]])
+                sd <- sqrt(inla.emarginal(t2, object$inlaFits$rhoFit$marginals.hyperpar[[i]]) - mean^2)
                 if (ncol(mx) == 6)
                     mx <- rbind(mx, c(mean, sd, 1 / sqrt(object$inlaFits$rhoFit$summary.hyperpar[i, 5:3, drop=FALSE]), "Signif. Pr."=NA))
                 else

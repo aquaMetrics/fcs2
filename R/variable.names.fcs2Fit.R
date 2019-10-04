@@ -29,8 +29,6 @@ variable.names.fcs2Fit <-
   function(object, q = object$multiRun, r = TRUE, abundance = TRUE, prevalence = TRUE, linear = TRUE,
            rw = "group", spatial = "group", hyperparams = "scale", ...)
 {
-    ##attach(object, warn.conflicts=FALSE)
-    ##on.exit(detach(object))
   with(object, {
     params <- c()
 

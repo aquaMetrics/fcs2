@@ -6,6 +6,8 @@
 \title{The Logit Function}
 \usage{
 logit(x)
+
+expit(x)
 }
 \arguments{
 \item{x}{a numeric vector or matrix}

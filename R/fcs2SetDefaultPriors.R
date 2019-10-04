@@ -35,8 +35,7 @@
 .fcs2SetDefaultPriors <-
 function(fit)
 {
-    attach(fit, warn.conflicts=FALSE)
-    on.exit(detach(fit))
+  with(fit, {
 
     # catch probability q
     if (fit$multiRun) {
@@ -115,4 +114,5 @@ function(fit)
     }
 
     prior.parameters
+  })
 }

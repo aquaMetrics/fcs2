@@ -39,7 +39,7 @@ plotSpatialTerm <-
 function(map, fit, type = "mean", abundance = TRUE, prevalence = TRUE, posterior = !is.null(fit$bugsFit), inla = !posterior, ...)
 {
     # load package 'maptools'
-    if (!require(maptools))
+    if (!requireNamespace("maptools", quietly = TRUE))
         stop("`plotSpatialTerm' requires R package `maptools' - please install using `install.packages'")
 
     ## Add spatial terms to map
@@ -52,6 +52,6 @@ function(map, fit, type = "mean", abundance = TRUE, prevalence = TRUE, posterior
         which <- paste("inla", type, variables, sep=".")
     if (posterior)
         which <- c(which, paste(type, variables, sep="."))
-    spplot(map, which, ...)
+    sp::spplot(map, which, ...)
 }
 

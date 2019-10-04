@@ -90,8 +90,8 @@ function(x, variables = variable.names(x), prior = TRUE, posterior = !is.null(x$
     # set up multiple plots
     if (length(variables) > 1) {
         w <- ceiling(sqrt(length(variables)))
-        par.old <- par(mfrow=c(w - (length(variables) <= w*(w-1)), w))
-        on.exit(par(par.old))
+        par.old <- graphics::par(mfrow=c(w - (length(variables) <= w*(w-1)), w))
+        on.exit(graphics::par(par.old))
     }
 
     # set up plot (colours, lines, etc)
@@ -124,23 +124,23 @@ function(x, variables = variable.names(x), prior = TRUE, posterior = !is.null(x$
                 }
 
                 # plot
-                plot(0, 0, col="white", xlim=xlim, ylim=ylim, xlab="", ylab="Density", main=var)
-                abline(h=0, v=c(0, 1), col="grey80")
+                graphics::plot(0, 0, col="white", xlim=xlim, ylim=ylim, xlab="", ylab="Density", main=var)
+                graphics::abline(h=0, v=c(0, 1), col="grey80")
                 if (prior)
-                    lines(xplt, ypltPrior, lty=lty[1], col=col[1])
+                    graphics::lines(xplt, ypltPrior, lty=lty[1], col=col[1])
                 if (posterior) {
-                    lines(bugsPosterior, lty=lty[3], col=col[3])
+                    graphics::lines(bugsPosterior, lty=lty[3], col=col[3])
 
                     if (samples) {
-                        samplesCol <- rgb2hsv(col2rgb(col[3]))
-                        samplesCol <- hsv(h=samplesCol[1], s=samplesCol[2], v=samplesCol[3], a=min(1, 100 / nrow(x$bugsFit$sims.matrix[, var])))  #  OR: 1 / log10(nrow(x$bugsFit$sims.matrix[, var]))))
-                        rug(x$bugsFit$sims.matrix[, var], col=samplesCol)
+                        samplesCol <- grDevices::rgb2hsv(grDevices::col2rgb(col[3]))
+                        samplesCol <- grDevices::hsv(h=samplesCol[1], s=samplesCol[2], v=samplesCol[3], a=min(1, 100 / nrow(x$bugsFit$sims.matrix[, var])))  #  OR: 1 / log10(nrow(x$bugsFit$sims.matrix[, var]))))
+                        graphics::rug(x$bugsFit$sims.matrix[, var], col=samplesCol)
                     }
                 }
                 est <- muEstimates
                 est[2] <- FALSE  # no INLA
                 if (legend)
-                    legend("topright", legend=estimateNames[est], lty=lty[est], col=col[est], bg=hsv(s=0, a=0.5))
+                    legend("topright", legend=estimateNames[est], lty=lty[est], col=col[est], bg=grDevices::hsv(s=0, a=0.5))
 
 
             } else if (var == "r") {
@@ -180,23 +180,23 @@ function(x, variables = variable.names(x), prior = TRUE, posterior = !is.null(x$
                 }
 
                 # plot
-                plot(0, 0, col="white", xlim=xlim, ylim=ylim, xlab="", ylab="Density", main=var)
-                abline(h=0, v=0, col="grey80")
+                graphics::plot(0, 0, col="white", xlim=xlim, ylim=ylim, xlab="", ylab="Density", main=var)
+                graphics::abline(h=0, v=0, col="grey80")
                 if (prior)
-                    lines(xplt, ypltPrior, lty=lty[1], col=col[1])
+                    graphics::lines(xplt, ypltPrior, lty=lty[1], col=col[1])
                 if (muINLA)
-                    lines(xplt, ypltINLA, lty=lty[2], col=col[2])
+                    graphics::lines(xplt, ypltINLA, lty=lty[2], col=col[2])
                 if (posterior) {
-                    lines(bugsPosterior, lty=lty[3], col=col[3])
+                    graphics::lines(bugsPosterior, lty=lty[3], col=col[3])
 
                     if (samples) {
-                        samplesCol <- rgb2hsv(col2rgb(col[3]))
-                        samplesCol <- hsv(h=samplesCol[1], s=samplesCol[2], v=samplesCol[3], a=min(1, 100 / nrow(x$bugsFit$sims.matrix[, var])))  #  OR: 1 / log10(nrow(x$bugsFit$sims.matrix[, var]))))
-                        rug(x$bugsFit$sims.matrix[, var], col=samplesCol)
+                        samplesCol <- grDevices::rgb2hsv(grDevices::col2rgb(col[3]))
+                        samplesCol <- grDevices::hsv(h=samplesCol[1], s=samplesCol[2], v=samplesCol[3], a=min(1, 100 / nrow(x$bugsFit$sims.matrix[, var])))  #  OR: 1 / log10(nrow(x$bugsFit$sims.matrix[, var]))))
+                        graphics::rug(x$bugsFit$sims.matrix[, var], col=samplesCol)
                     }
                 }
                 if (legend)
-                    legend("topright", legend=estimateNames[muEstimates], lty=lty[muEstimates], col=col[muEstimates], bg=hsv(s=0, a=0.5))
+                    legend("topright", legend=estimateNames[muEstimates], lty=lty[muEstimates], col=col[muEstimates], bg=grDevices::hsv(s=0, a=0.5))
 
 
             } else if (max(pmatch(c("beta", "gamma"), var, nomatch=0)) > 0) {
@@ -250,14 +250,14 @@ function(x, variables = variable.names(x), prior = TRUE, posterior = !is.null(x$
                         if (pmatch("beta", var, nomatch=0) && muINLA) {
                             for (i in 1:length(vars)) {
                                 inlaMarginal <- x$inlaFits$muFit$marginals.fixed[[sub("beta.", "", make.names(vars[i]))]]
-                                inlaEst <- inlaEst + (xpoints ^ orders[i]) * inla.expectation(identity, inlaMarginal)
+                                inlaEst <- inlaEst + (xpoints ^ orders[i]) * inla.emarginal(identity, inlaMarginal)
                             }
                             groupINLA <- TRUE
 
                         } else if (rhoINLA) {
                             for (i in 1:length(vars)) {
                                 inlaMarginal <- x$inlaFits$rhoFit$marginals.fixed[[sub("gamma.", "", make.names(vars[i]))]]
-                                inlaEst <- inlaEst + (xpoints ^ orders[i]) * inla.expectation(identity, inlaMarginal)
+                                inlaEst <- inlaEst + (xpoints ^ orders[i]) * inla.emarginal(identity, inlaMarginal)
                             }
                             groupINLA <- TRUE
                         }
@@ -280,26 +280,26 @@ function(x, variables = variable.names(x), prior = TRUE, posterior = !is.null(x$
                         ylim <- c(min(ylim[1], inlaEst), max(ylim[2], inlaEst))
 
                     # plot either samples or summaries
-                    plot(0, 0, col="white", xlim=xlim, ylim=ylim, xlab=covariate, ylab="", main=var)
-                    abline(h=0, col="grey80")
+                    graphics::plot(0, 0, col="white", xlim=xlim, ylim=ylim, xlab=covariate, ylab="", main=var)
+                    graphics::abline(h=0, col="grey80")
                     if (groupINLA)
-                        lines(xpoints, inlaEst, col=col[2], lty=1)
+                        graphics::lines(xpoints, inlaEst, col=col[2], lty=1)
                     if (posterior) {
                         if (samples) {
-                            samplesCol <- rgb2hsv(col2rgb(col[3]))
-                            samplesCol <- hsv(h=samplesCol[1], s=samplesCol[2], v=samplesCol[3], a=min(1, 100 / nrow(bugsSamples)))  #  OR: 1 / log10(nrow(bugsSamples))))
-                            matplot(add=TRUE, xpoints, t(bugsSamples), col=samplesCol, t='l', pch=20, lty=1)
+                            samplesCol <- grDevices::rgb2hsv(grDevices::col2rgb(col[3]))
+                            samplesCol <- grDevices::hsv(h=samplesCol[1], s=samplesCol[2], v=samplesCol[3], a=min(1, 100 / nrow(bugsSamples)))  #  OR: 1 / log10(nrow(bugsSamples))))
+                            graphics::matplot(add=TRUE, xpoints, t(bugsSamples), col=samplesCol, t='l', pch=20, lty=1)
 
                         } else {
-                            lines(xpoints, bugsCI[, 1], col=col[3], lty=2)
-                            lines(xpoints, bugsMeans, col=col[3], lty=1)
-                            lines(xpoints, bugsCI[, 2], col=col[3], lty=2)
+                            graphics::lines(xpoints, bugsCI[, 1], col=col[3], lty=2)
+                            graphics::lines(xpoints, bugsMeans, col=col[3], lty=1)
+                            graphics::lines(xpoints, bugsCI[, 2], col=col[3], lty=2)
                         }
                     }
-                    rug(x$modelMatrix[, covariate])
+                    graphics::rug(x$modelMatrix[, covariate])
                     est <- c(FALSE, groupINLA, posterior)
                     if (legend)
-                        legend("topright", legend=estimateNames[est], lty=lty[est], col=col[est], bg=hsv(s=0, a=0.5))
+                        legend("topright", legend=estimateNames[est], lty=lty[est], col=col[est], bg=grDevices::hsv(s=0, a=0.5))
 
                 } else {
                     ## PDF of single linear variable
@@ -349,19 +349,19 @@ function(x, variables = variable.names(x), prior = TRUE, posterior = !is.null(x$
                     }
 
                     # plot
-                    plot(0, 0, col="white", xlim=xlim, ylim=ylim, xlab="", ylab="Density", main=var)
-                    abline(h=0, v=0, col="grey80")
+                    graphics::plot(0, 0, col="white", xlim=xlim, ylim=ylim, xlab="", ylab="Density", main=var)
+                    graphics::abline(h=0, v=0, col="grey80")
                     if (prior && substr(var, nchar(var), nchar(var)) != "]")
-                        lines(xplt, ypltPrior, lty=lty[1], col=col[1])
+                        graphics::lines(xplt, ypltPrior, lty=lty[1], col=col[1])
                     if (inla)
-                        lines(xplt, ypltINLA, lty=lty[2], col=col[2])
+                        graphics::lines(xplt, ypltINLA, lty=lty[2], col=col[2])
                     if (posterior) {
-                        lines(bugsPosterior, lty=lty[3], col=col[3])
+                        graphics::lines(bugsPosterior, lty=lty[3], col=col[3])
 
                         if (samples) {
-                            samplesCol <- rgb2hsv(col2rgb(col[3]))
-                            samplesCol <- hsv(h=samplesCol[1], s=samplesCol[2], v=samplesCol[3], a=min(1, 100 / nrow(x$bugsFit$sims.matrix[, var])))  #  OR: 1 / log10(nrow(x$bugsFit$sims.matrix[, var]))))
-                            rug(x$bugsFit$sims.matrix[, var], col=samplesCol)
+                            samplesCol <- grDevices::rgb2hsv(grDevices::col2rgb(col[3]))
+                            samplesCol <- grDevices::hsv(h=samplesCol[1], s=samplesCol[2], v=samplesCol[3], a=min(1, 100 / nrow(x$bugsFit$sims.matrix[, var])))  #  OR: 1 / log10(nrow(x$bugsFit$sims.matrix[, var]))))
+                            graphics::rug(x$bugsFit$sims.matrix[, var], col=samplesCol)
                         }
                     }
                     if (legend) {
@@ -370,7 +370,7 @@ function(x, variables = variable.names(x), prior = TRUE, posterior = !is.null(x$
                         else
                             est <- rhoEstimates
                         est[1] <- (prior && substr(var, nchar(var), nchar(var)) != "]")
-                        legend("topright", legend=estimateNames[est], lty=lty[est], col=col[est], bg=hsv(s=0, a=0.5))
+                        legend("topright", legend=estimateNames[est], lty=lty[est], col=col[est], bg=grDevices::hsv(s=0, a=0.5))
                     }
                 }
 
@@ -427,23 +427,23 @@ function(x, variables = variable.names(x), prior = TRUE, posterior = !is.null(x$
                 }
 
                 # plot
-                plot(0, 0, col="white", xlim=xlim, ylim=ylim, xlab="", ylab="Density", main=var)
-                abline(h=0, v=0, col="grey80")
+                graphics::plot(0, 0, col="white", xlim=xlim, ylim=ylim, xlab="", ylab="Density", main=var)
+                graphics::abline(h=0, v=0, col="grey80")
                 if (prior)
-                    lines(xplt, ypltPrior, lty=lty[1], col=col[1])
+                    graphics::lines(xplt, ypltPrior, lty=lty[1], col=col[1])
                 if (inla)
-                    lines(xplt, ypltINLA, lty=lty[2], col=col[2])
+                    graphics::lines(xplt, ypltINLA, lty=lty[2], col=col[2])
                 if (posterior) {
-                    lines(bugsPosterior, lty=lty[3], col=col[3])
+                    graphics::lines(bugsPosterior, lty=lty[3], col=col[3])
 
                     if (samples) {
-                        samplesCol <- rgb2hsv(col2rgb(col[3]))
-                        samplesCol <- hsv(h=samplesCol[1], s=samplesCol[2], v=samplesCol[3], a=min(1, 100 / nrow(x$bugsFit$sims.matrix[, precVarName])))  #  OR: 1 / log10(nrow(x$bugsFit$sims.matrix[, precVarName]))))
-                        rug(1 / sqrt(x$bugsFit$sims.matrix[, precVarName]), col=samplesCol)
+                        samplesCol <- grDevices::rgb2hsv(grDevices::col2rgb(col[3]))
+                        samplesCol <- grDevices::hsv(h=samplesCol[1], s=samplesCol[2], v=samplesCol[3], a=min(1, 100 / nrow(x$bugsFit$sims.matrix[, precVarName])))  #  OR: 1 / log10(nrow(x$bugsFit$sims.matrix[, precVarName]))))
+                        graphics::rug(1 / sqrt(x$bugsFit$sims.matrix[, precVarName]), col=samplesCol)
                     }
                 }
                 if (legend)
-                    legend("topright", legend=estimateNames[estimates], lty=lty[estimates], col=col[estimates], bg=hsv(s=0, a=0.5))
+                    legend("topright", legend=estimateNames[estimates], lty=lty[estimates], col=col[estimates], bg=grDevices::hsv(s=0, a=0.5))
 
             } else if (max(pmatch(c("tau", "phi"), var, nomatch=0)) > 0) {
                 ## Hyperparameters for CAR terms (on precision scale):
@@ -494,23 +494,23 @@ function(x, variables = variable.names(x), prior = TRUE, posterior = !is.null(x$
                 }
 
                 # plot
-                plot(0, 0, col="white", xlim=xlim, ylim=ylim, xlab="", ylab="Density", main=var)
-                abline(h=0, v=0, col="grey80")
+                graphics::plot(0, 0, col="white", xlim=xlim, ylim=ylim, xlab="", ylab="Density", main=var)
+                graphics::abline(h=0, v=0, col="grey80")
                 if (prior)
-                    lines(xplt, ypltPrior, lty=lty[1], col=col[1])
+                    graphics::lines(xplt, ypltPrior, lty=lty[1], col=col[1])
                 if (inla)
-                    lines(xplt, ypltINLA, lty=lty[2], col=col[2])
+                    graphics::lines(xplt, ypltINLA, lty=lty[2], col=col[2])
                 if (posterior) {
-                    lines(bugsPosterior, lty=lty[3], col=col[3])
+                    graphics::lines(bugsPosterior, lty=lty[3], col=col[3])
 
                     if (samples) {
-                        samplesCol <- rgb2hsv(col2rgb(col[3]))
-                        samplesCol <- hsv(h=samplesCol[1], s=samplesCol[2], v=samplesCol[3], a=min(1, 100 / nrow(x$bugsFit$sims.matrix[, var])))  #  OR: 1 / log10(nrow(x$bugsFit$sims.matrix[, var]))))
-                        rug(x$bugsFit$sims.matrix[, var], col=samplesCol)
+                        samplesCol <- grDevices::rgb2hsv(grDevices::col2rgb(col[3]))
+                        samplesCol <- grDevices::hsv(h=samplesCol[1], s=samplesCol[2], v=samplesCol[3], a=min(1, 100 / nrow(x$bugsFit$sims.matrix[, var])))  #  OR: 1 / log10(nrow(x$bugsFit$sims.matrix[, var]))))
+                        graphics::rug(x$bugsFit$sims.matrix[, var], col=samplesCol)
                     }
                 }
                 if (legend)
-                    legend("topright", legend=estimateNames[estimates], lty=lty[estimates], col=col[estimates], bg=hsv(s=0, a=0.5))
+                    legend("topright", legend=estimateNames[estimates], lty=lty[estimates], col=col[estimates], bg=grDevices::hsv(s=0, a=0.5))
 
             } else
                 warning("Variable '", var, "' not supported for PDF plots", sep="")
@@ -563,8 +563,8 @@ function(x, variables = variable.names(x), prior = TRUE, posterior = !is.null(x$
                     bugsCI <- cbind(bottom=apply(bugsSamples, 2, quantile, prob=((1 - prob) / 2)),
                                     top=apply(bugsSamples, 2, quantile, prob=1 - ((1 - prob) / 2)))
                 } else {
-                    samplesCol <- rgb2hsv(col2rgb(col[3]))
-                    samplesCol <- hsv(h=samplesCol[1], s=samplesCol[2], v=samplesCol[3], a=min(1, 100 / nrow(bugsSamples)))  #  OR: 1 / log10(nrow(bugsSamples))))
+                    samplesCol <- grDevices::rgb2hsv(grDevices::col2rgb(col[3]))
+                    samplesCol <- grDevices::hsv(h=samplesCol[1], s=samplesCol[2], v=samplesCol[3], a=min(1, 100 / nrow(bugsSamples)))  #  OR: 1 / log10(nrow(bugsSamples))))
                 }
             }
 
@@ -580,46 +580,46 @@ function(x, variables = variable.names(x), prior = TRUE, posterior = !is.null(x$
             }
 
             # plot
-            plot(0, 0, col="white", xlim=range(boundaries), ylim=ylim, xlab=covariate, ylab="", main=var)
-            abline(h=0, col="grey80")
+            graphics::plot(0, 0, col="white", xlim=range(boundaries), ylim=ylim, xlab=covariate, ylab="", main=var)
+            graphics::abline(h=0, col="grey80")
             if (posterior && samples)
-                matplot(add=TRUE, boundaries, t(bugsSamples), col=samplesCol, t='l', pch=20, lty=1)
+                graphics::matplot(add=TRUE, boundaries, t(bugsSamples), col=samplesCol, t='l', pch=20, lty=1)
             if (var %in% rwGroups) {
                 if (inla) {
-                    lines(boundaries, inlaCI[, 1], col=col[2], lty=2)
-                    lines(boundaries, inlaMeans, col=col[2], lty=1)
-                    lines(boundaries, inlaCI[, 2], col=col[2], lty=2)
+                    graphics::lines(boundaries, inlaCI[, 1], col=col[2], lty=2)
+                    graphics::lines(boundaries, inlaMeans, col=col[2], lty=1)
+                    graphics::lines(boundaries, inlaCI[, 2], col=col[2], lty=2)
                 }
                 if (posterior && !samples) {
-                    lines(boundaries, bugsCI[, 1], col=col[3], lty=2)
-                    lines(boundaries, bugsMeans, col=col[3], lty=1)
-                    lines(boundaries, bugsCI[, 2], col=col[3], lty=2)
+                    graphics::lines(boundaries, bugsCI[, 1], col=col[3], lty=2)
+                    graphics::lines(boundaries, bugsMeans, col=col[3], lty=1)
+                    graphics::lines(boundaries, bugsCI[, 2], col=col[3], lty=2)
                 }
 
             } else {
                 if (inla) {
-                    points(boundaries, inlaCI[, 1], col=col[2], pch='-')
-                    points(boundaries, inlaMeans, col=col[2], pch='-')
-                    points(boundaries, inlaCI[, 2], col=col[2], pch='-')
+                    graphics::points(boundaries, inlaCI[, 1], col=col[2], pch='-')
+                    graphics::points(boundaries, inlaMeans, col=col[2], pch='-')
+                    graphics::points(boundaries, inlaCI[, 2], col=col[2], pch='-')
                     for (i in 1:length(boundaries))
-                        lines(rep(boundaries[i], 2), inlaCI[i, 1:2], col=col[2], lty=3)
+                        graphics::lines(rep(boundaries[i], 2), inlaCI[i, 1:2], col=col[2], lty=3)
                 }
                 if (posterior && !samples) {
-                    points(boundaries, bugsCI[, 1], col=col[3], pch='-')
-                    points(boundaries, bugsMeans, col=col[3], pch='-')
-                    points(boundaries, bugsCI[, 2], col=col[3], pch='-')
+                    graphics::points(boundaries, bugsCI[, 1], col=col[3], pch='-')
+                    graphics::points(boundaries, bugsMeans, col=col[3], pch='-')
+                    graphics::points(boundaries, bugsCI[, 2], col=col[3], pch='-')
                     for (i in 1:length(boundaries))
-                        lines(rep(boundaries[i], 2), bugsCI[i, 1:2], col=col[3], lty=3)
+                        graphics::lines(rep(boundaries[i], 2), bugsCI[i, 1:2], col=col[3], lty=3)
                 }
             }
-            rug(x$modelMatrix[, covariate])
+            graphics::rug(x$modelMatrix[, covariate])
             if (legend) {
                 if (pmatch("beta", var, nomatch=0))
                     est <- muEstimates
                 else
                     est <- rhoEstimates
                 est[1] <- FALSE  # force no prior
-                legend("topright", legend=estimateNames[est], lty=1, col=col[est], bg=hsv(s=0, a=0.5))
+                legend("topright", legend=estimateNames[est], lty=1, col=col[est], bg=grDevices::hsv(s=0, a=0.5))
             }
         }
     }

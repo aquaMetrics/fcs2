@@ -36,7 +36,7 @@
 fcs2InteractivePrediction <- function(fit, data, init.row, eqr = TRUE, boundaries = NULL)
 {
     # load package 'rpanel'
-    if (!require(rpanel))
+    if (!requireNamespace("rpanel", quietly = TRUE))
         stop("`fcs2InteractivePrediction' requires R package `rpanel' - please install using `install.packages'")
 
     # check fit contains bugs fit
@@ -62,7 +62,7 @@ fcs2InteractivePrediction <- function(fit, data, init.row, eqr = TRUE, boundarie
             # use nRunsVar
             nRuns <- data[, fit$nRunsVar]
 
-        } else if (sum(fit$runTotalVars %in% colnames(newData)) == length(fit$runTotalVars)) {
+        } else if (sum(fit$runTotalVars %in% colnames(data)) == length(fit$runTotalVars)) {
             # calculate from runTotalVars
             nRuns <- rep(NA, nrow(data))
             for (i in 1:nrow(data))
@@ -205,7 +205,7 @@ fcs2InteractivePrediction <- function(fit, data, init.row, eqr = TRUE, boundarie
         data <- as.data.frame(panel[covnames])
 
         # set up plot
-        par.old <- par(mfrow=c(2,2), ask=FALSE)
+        par.old <- graphics::par(mfrow=c(2,2), ask=FALSE)
 
         # mu
         mu <- abundance(fit, data)
@@ -214,10 +214,10 @@ fcs2InteractivePrediction <- function(fit, data, init.row, eqr = TRUE, boundarie
                 dmu <- density(jitter(mu), from=0)  # prevents bw being too large when all identical
             else
                 dmu <- density(mu, from=0)
-            plot(dmu, ylim=c(0, max(dmu$y)), main=expression(paste("Abundance ", mu)), xlab="Abundance")
+            graphics::plot(dmu, ylim=c(0, max(dmu$y)), main=expression(paste("Abundance ", mu)), xlab="Abundance")
 
         } else
-            frame()
+            graphics::frame()
 
         # rho
         rho <- prevalence(fit, data)
@@ -226,7 +226,7 @@ fcs2InteractivePrediction <- function(fit, data, init.row, eqr = TRUE, boundarie
                 drho <- density(jitter(rho), from=0, to=1)  # prevents bw being too large when all identical
             else
                 drho <- density(rho, from=0, to=1)
-            plot(drho, ylim=c(0, max(drho$y)), main=expression(paste("Prevalence ", rho)), xlab="Prevalence")
+            graphics::plot(drho, ylim=c(0, max(drho$y)), main=expression(paste("Prevalence ", rho)), xlab="Prevalence")
 
             if (length(mu) > 0) {
                 # catch
@@ -240,12 +240,12 @@ fcs2InteractivePrediction <- function(fit, data, init.row, eqr = TRUE, boundarie
                 # calculate eqr
                 if (eqr) {
                     eqrSamples <- fcs2SingleEQR(fit, data, mu=mu, rho=rho)
-                    plot(eqrSamples, boundaries=boundaries, title=paste("EQR: mean =", signif(mean(eqrSamples), 3)))
+                    graphics::plot(eqrSamples, boundaries=boundaries, title=paste("EQR: mean =", signif(mean(eqrSamples), 3)))
                 }
             }
         }
 
-        par(par.old)
+        graphics::par(par.old)
 
         panel
     }

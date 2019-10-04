@@ -77,7 +77,7 @@ function(fit, run = TRUE, verbose = TRUE)
         # if using spatial term, create INLA graph file
         if(!is.null(fit$rhoSpatialVar)) {
             filename <- "inla_graph_file.txt"
-            geobugs2inla(fit$rhoAdjacency$adj, fit$rhoAdjacency$num, filename)
+            inla.geobugs2inla(fit$rhoAdjacency$adj, fit$rhoAdjacency$num, filename)
             on.exit(unlink(filename))
         }
 
@@ -122,7 +122,7 @@ function(fit, run = TRUE, verbose = TRUE)
             cat("Fitting prevalence with INLA ...")
         flush.console()
         suppressWarnings({
-            prevalenceFit <- inla(fm, "binomial", inlaData,
+            prevalenceFit <- inla(fm, "binomial", data=inlaData,
                                   Ntrials=Ntrials, control.compute=list(dic=TRUE))
         })
 
@@ -165,7 +165,7 @@ function(fit, run = TRUE, verbose = TRUE)
             # if using spatial term, create INLA graph file, if not made above
             if(!is.null(fit$muSpatialVar) && (is.null(fit$rhoSpatialVar) || fit$muSpatialVar != fit$rhoSpatialVar)) {
                 filename <- "inla_graph_file.txt"  # Note: tempfile() didn't seem to work
-                geobugs2inla(fit$muAdjacency$adj, fit$muAdjacency$num, filename)
+                inla.geobugs2inla(fit$muAdjacency$adj, fit$muAdjacency$num, filename)
                 on.exit(unlink(filename), add=TRUE)
             }
 
@@ -209,8 +209,10 @@ function(fit, run = TRUE, verbose = TRUE)
                 cat("Fitting abundance with INLA ...")
             flush.console()
             suppressWarnings({
-                abundanceFit <- inla(fm, "nbinomial", inlaData, E=E, control.compute=list(dic=TRUE) ,
-                                     control.data=list(prior="gaussian", param=fit$prior.parameters[["r"]]))
+                abundanceFit <- inla(fm, "nbinomial", data=inlaData, E=E, control.compute=list(dic=TRUE) ,
+                                     #control.data=list(prior="gaussian", param=fit$prior.parameters[["r"]]))
+                                     #control.family=list(hyper=list(prec=list(prior="gaussian", param=fit$prior.parameters[["r"]]))))
+                                     control.family=list(prior="gaussian", param=fit$prior.parameters[["r"]]))
             })
 
             # check that INLA ran ok

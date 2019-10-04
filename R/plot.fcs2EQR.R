@@ -90,8 +90,8 @@ function(x, survey = 1, species = 1, boundaries, type = "density", title, adjust
     # set up multiple plots
     if (length(subsubset) > 1) {
         w <- ceiling(sqrt(length(subsubset)))
-        par.old <- par(mfrow=c(w - (length(subsubset) <= w*(w-1)), w))
-        on.exit(par(par.old))
+        par.old <- graphics::par(mfrow=c(w - (length(subsubset) <= w*(w-1)), w))
+        on.exit(graphics::par(par.old))
     }
 
     # check plot type
@@ -102,17 +102,17 @@ function(x, survey = 1, species = 1, boundaries, type = "density", title, adjust
                 d <- density(jitter(x[, subset$Survey[i], subset$Species[i]], factor=0.1), from=0, to=1, adjust=adjust)  # prevents bw being too large when all identical
             else
                 d <- density(x[, subset$Survey[i], subset$Species[i]], from=0, to=1, adjust=adjust)
-            plot(d, main=title[i], xlab="EQR", ylim=c(0, max(d$y, na.rm=TRUE)), ...)
+            graphics::plot(d, main=title[i], xlab="EQR", ylim=c(0, max(d$y, na.rm=TRUE)), ...)
             if (!is.null(boundaries)) {
                 for (j in 1:(length(boundaries) - 1)) {
                     ix <- which(d$x >= boundaries[j] & d$x <= boundaries[j + 1])
                     if (j > 1)
                         ix <- c(ix[1] - 1, ix)  # remove gap between regions
-                    polygon(d$x[c(ix, rev(ix))], c(d$y[ix], rep(0, length(ix))), border=NA, col=hsv(s=0.5, h=(j - 1 + (j == 5))/10))
+                    graphics::polygon(d$x[c(ix, rev(ix))], c(d$y[ix], rep(0, length(ix))), border=NA, col=grDevices::hsv(s=0.5, h=(j - 1 + (j == 5))/10))
                 }
             }
-            abline(v=c(0, 1), col="grey80")
-            lines(d)
+            graphics::abline(v=c(0, 1), col="grey80")
+            graphics::lines(d)
         }
 
     } else {
@@ -122,7 +122,7 @@ function(x, survey = 1, species = 1, boundaries, type = "density", title, adjust
             names(prob) <- c("Bad", "Poor", "Moderate", "Good", "High")
             for (j in 1:(length(boundaries) - 1))
                 prob[j] <- mean(x[, subset$Survey[i], subset$Species[i]] > boundaries[j] & x[, subset$Survey[i], subset$Species[i]] <= boundaries[j + 1])
-            barplot(prob, ylim=c(0, 1), col=hsv(s=0.5, h=c(0:3, 5)/10), ylab="Probability", main=title[i], ...)
+            graphics::barplot(prob, ylim=c(0, 1), col=grDevices::hsv(s=0.5, h=c(0:3, 5)/10), ylab="Probability", main=title[i], ...)
         }
     }
 }

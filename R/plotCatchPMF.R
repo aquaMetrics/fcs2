@@ -203,8 +203,8 @@ function(fit, newData, subset = 1, na.action, boundaries, mu, rho, xmax, xmaxsca
     # set up multiple plots
     if (length(isubset) > 1) {
         w <- ceiling(sqrt(length(isubset)))
-        par.old <- par(mfrow=c(w - (length(isubset) <= w*(w-1)), w))
-        on.exit(par(par.old))
+        par.old <- graphics::par(mfrow=c(w - (length(isubset) <= w*(w-1)), w))
+        on.exit(graphics::par(par.old))
     }
 
     # plot pmf
@@ -245,7 +245,7 @@ function(fit, newData, subset = 1, na.action, boundaries, mu, rho, xmax, xmaxsca
         # calculate plot colour
         if (is.null(boundaries)) {
             # if boundaries = NULL, colour blue and grey
-            col <- hsv(h=0.66, s=(xpts <= catchMax[isubset[i]]) - 0.1 * (xpts < catchMin[isubset[i]]),
+            col <- grDevices::hsv(h=0.66, s=(xpts <= catchMax[isubset[i]]) - 0.1 * (xpts < catchMin[isubset[i]]),
                        v=0.8 + 0.2 * (xpts <= catchMax[isubset[i]]) - 0.1 * (xpts < catchMin[isubset[i]]))
 
         } else {
@@ -255,25 +255,25 @@ function(fit, newData, subset = 1, na.action, boundaries, mu, rho, xmax, xmaxsca
             hue[cumProb > boundaries[2] & cumProb <= boundaries[3]] <- 2/10
             hue[cumProb > boundaries[3] & cumProb <= boundaries[4]] <- 3/10
             hue[cumProb > boundaries[4]] <- 5/10
-            col <- hsv(h=hue, s=0.3 + 0.4 * (xpts <= catchMax[isubset[i]]) - 0.2 * (xpts < catchMin[isubset[i]]),
+            col <- grDevices::hsv(h=hue, s=0.3 + 0.4 * (xpts <= catchMax[isubset[i]]) - 0.2 * (xpts < catchMin[isubset[i]]),
                        v=0.9 + 0.1 * (xpts <= catchMax[isubset[i]]) - 0.05 * (xpts < catchMin[isubset[i]]))
         }
 
         # plot
         if (xmaxi >= maxpts) {
             # line plot
-            plot(xpts, prob, t='h', col=col, yaxs="i", bty="n", ylim=c(0, max(prob)), lwd=3,
+            graphics::plot(xpts, prob, t='h', col=col, yaxs="i", bty="n", ylim=c(0, max(prob)), lwd=3,
                  xlab="Total catch", ylab="Probability", main=title[i], ...)
-            abline(h=0, col="grey50")
+            graphics::abline(h=0, col="grey50")
 
         } else {
             # bar plot
-            barplot(prob, names.arg=xpts, space=0, col=col,
-                    border=hsv(s=0, v=0.5 + 0.2 * (xpts > catchMax[isubset[i]])),
+            graphics::barplot(prob, names.arg=xpts, space=0, col=col,
+                    border=grDevices::hsv(s=0, v=0.5 + 0.2 * (xpts > catchMax[isubset[i]])),
                     xlab="Total catch", ylab="Probability", main=title[i], ...)
             if (catchMax[isubset[i]] < length(prob))
-                lines(rep(catchMax[isubset[i]] + 1, 2), c(0, prob[catchMax[isubset[i]] + 1]), col=hsv(s=0, v=0.5)) # draw over boarder of data prob
-            abline(h=0, col="grey50")
+                graphics::lines(rep(catchMax[isubset[i]] + 1, 2), c(0, prob[catchMax[isubset[i]] + 1]), col=grDevices::hsv(s=0, v=0.5)) # draw over boarder of data prob
+            graphics::abline(h=0, col="grey50")
         }
     }
 }

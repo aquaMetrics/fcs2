@@ -59,7 +59,7 @@ fcs2InteractiveLikelihood <- function(multipass = FALSE, eqr = FALSE, boundaries
                                       a.limit = c(0, 10), d.limit=c(1, 7), q.limit=c(0, 1), c.limit=c(0, 20))
 {
     # load package 'rpanel'
-    if (!require(rpanel))
+    if (!requireNamespace("rpanel", quietly = TRUE))
         stop("`fcs2InteractiveLikelihood' requires R package `rpanel' - please install using `install.packages'")
 
     # calculate initial values as centre of limits
@@ -72,9 +72,9 @@ fcs2InteractiveLikelihood <- function(multipass = FALSE, eqr = FALSE, boundaries
     if (!multipass) {
         # create panel with values as data
         if (eqr)
-            panel <- rp.control(sizer=r, mu=mu, rho=rho, area=a, catch=catch, title="EA FCS2 likelihood")
+            panel <- rpanel::rp.control(sizer=r, mu=mu, rho=rho, area=a, catch=catch, title="EA FCS2 likelihood")
         else
-            panel <- rp.control(sizer=r, mu=mu, rho=rho, area=a, title="EA FCS2 likelihood")
+            panel <- rpanel::rp.control(sizer=r, mu=mu, rho=rho, area=a, title="EA FCS2 likelihood")
 
         # create function to draw the ZINB PMF of the catch C
         draw <- function(panel) {
@@ -87,7 +87,7 @@ fcs2InteractiveLikelihood <- function(multipass = FALSE, eqr = FALSE, boundaries
             # calculate colour
             if (is.null(boundaries)) {
                 # if boundaries = NULL, colour blue and grey
-                col <- hsv(h=0.66, s=(xplt <= panel$catch) - 0.1 * (xplt < panel$catch),
+                col <- grDevices::hsv(h=0.66, s=(xplt <= panel$catch) - 0.1 * (xplt < panel$catch),
                            v=0.8 + 0.2 * (xplt <= panel$catch) - 0.1 * (xplt < panel$catch))
 
             } else {
@@ -98,7 +98,7 @@ fcs2InteractiveLikelihood <- function(multipass = FALSE, eqr = FALSE, boundaries
                 hue[cumProb > boundaries[2] & cumProb <= boundaries[3]] <- 2/10
                 hue[cumProb > boundaries[3] & cumProb <= boundaries[4]] <- 3/10
                 hue[cumProb > boundaries[4]] <- 5/10
-                col <- hsv(h=hue, s=0.3 + 0.4 * (xplt <= panel$catch) - 0.2 * (xplt < panel$catch),
+                col <- grDevices::hsv(h=hue, s=0.3 + 0.4 * (xplt <= panel$catch) - 0.2 * (xplt < panel$catch),
                            v=0.9 + 0.1 * (xplt <= panel$catch) - 0.05 * (xplt < panel$catch))
             }
 
@@ -109,21 +109,21 @@ fcs2InteractiveLikelihood <- function(multipass = FALSE, eqr = FALSE, boundaries
                 title <- paste(title, ", EQR=", signif(pzinbinom(panel$catch, panel$sizer, nbmean=nbmean, zeroprob=zeroprob), 3), sep="")
 
             # plot
-            par.old <- par(mfrow=c(1,1), ask=FALSE)
-            barplot(names=xplt, prob, xlab="Catch c", ylab="Probability",
+            par.old <- graphics::par(mfrow=c(1,1), ask=FALSE)
+            graphics::barplot(names=xplt, prob, xlab="Catch c", ylab="Probability",
                     main=title, col=col, space=0)
-            par(par.old)
+            graphics::par(par.old)
 
             panel
         }
 
         # add sliders to control parameters
-        rp.slider(panel, sizer, r.limit[1], r.limit[2], draw, "Shape r", showvalue=TRUE, resolution=signif(diff(r.limit)/100, 3))
-        rp.slider(panel, rho, rho.limit[1], rho.limit[2], draw, "Prevalence rho (probability present)", showvalue=TRUE, resolution=signif(diff(rho.limit)/100, 3))
-        rp.slider(panel, mu, mu.limit[1], mu.limit[2], draw, "Abundance mu (mean density)", showvalue=TRUE, resolution=signif(diff(mu.limit)/100, 3))
-        rp.slider(panel, area, a.limit[1], a.limit[2], draw, "Survey area a", showvalue=TRUE, resolution=signif(diff(a.limit)/100, 3))
+        rpanel::rp.slider(panel, sizer, r.limit[1], r.limit[2], draw, "Shape r", showvalue=TRUE, resolution=signif(diff(r.limit)/100, 3))
+        rpanel::rp.slider(panel, rho, rho.limit[1], rho.limit[2], draw, "Prevalence rho (probability present)", showvalue=TRUE, resolution=signif(diff(rho.limit)/100, 3))
+        rpanel::rp.slider(panel, mu, mu.limit[1], mu.limit[2], draw, "Abundance mu (mean density)", showvalue=TRUE, resolution=signif(diff(mu.limit)/100, 3))
+        rpanel::rp.slider(panel, area, a.limit[1], a.limit[2], draw, "Survey area a", showvalue=TRUE, resolution=signif(diff(a.limit)/100, 3))
         if (eqr)
-            rp.slider(panel, catch, c.limit[1], c.limit[2], draw, "Total catch t", showvalue=TRUE, resolution=1)
+            rpanel::rp.slider(panel, catch, c.limit[1], c.limit[2], draw, "Total catch t", showvalue=TRUE, resolution=1)
 
     } else {
         # calculate further initial values
@@ -133,9 +133,9 @@ fcs2InteractiveLikelihood <- function(multipass = FALSE, eqr = FALSE, boundaries
 
         # create panel with values as data
         if (eqr)
-            panel <- rp.control(sizer=r, mu=mu, rho=rho, area=a, d=d, q=q, catch=catch, title="Multiple-pass FCS2 likelihood", size=c(300, 400))
+            panel <- rpanel::rp.control(sizer=r, mu=mu, rho=rho, area=a, d=d, q=q, catch=catch, title="Multiple-pass FCS2 likelihood", size=c(300, 400))
         else
-            panel <- rp.control(sizer=r, mu=mu, rho=rho, area=a, d=d, q=q, title="Multiple-pass FCS2 likelihood", size=c(300, 400))
+            panel <- rpanel::rp.control(sizer=r, mu=mu, rho=rho, area=a, d=d, q=q, title="Multiple-pass FCS2 likelihood", size=c(300, 400))
 
         # create function to draw the ZINB PMF of the total catch T
         draw <- function(panel) {
@@ -148,7 +148,7 @@ fcs2InteractiveLikelihood <- function(multipass = FALSE, eqr = FALSE, boundaries
             # calculate colour
             if (is.null(boundaries)) {
                 # if boundaries = NULL, colour blue and grey
-                col <- hsv(h=0.66, s=(xplt <= panel$catch) - 0.1 * (xplt < panel$catch),
+                col <- grDevices::hsv(h=0.66, s=(xplt <= panel$catch) - 0.1 * (xplt < panel$catch),
                            v=0.8 + 0.2 * (xplt <= panel$catch) - 0.1 * (xplt < panel$catch))
 
             } else {
@@ -159,7 +159,7 @@ fcs2InteractiveLikelihood <- function(multipass = FALSE, eqr = FALSE, boundaries
                 hue[cumProb > boundaries[2] & cumProb <= boundaries[3]] <- 2/10
                 hue[cumProb > boundaries[3] & cumProb <= boundaries[4]] <- 3/10
                 hue[cumProb > boundaries[4]] <- 5/10
-                col <- hsv(h=hue, s=0.3 + 0.4 * (xplt <= panel$catch) - 0.2 * (xplt < panel$catch),
+                col <- grDevices::hsv(h=hue, s=0.3 + 0.4 * (xplt <= panel$catch) - 0.2 * (xplt < panel$catch),
                            v=0.9 + 0.1 * (xplt <= panel$catch) - 0.05 * (xplt < panel$catch))
             }
 
@@ -170,23 +170,23 @@ fcs2InteractiveLikelihood <- function(multipass = FALSE, eqr = FALSE, boundaries
                 title <- paste(title, ", EQR=", signif(pzinbinom(panel$catch, panel$sizer, nbmean=nbmean, zeroprob=zeroprob), 3), sep="")
 
             # plot
-            par.old <- par(mfrow=c(1,1), ask=FALSE)
-            barplot(names=xplt, prob, xlab="Total catch t", ylab="Probability",
+            par.old <- graphics::par(mfrow=c(1,1), ask=FALSE)
+            graphics::barplot(names=xplt, prob, xlab="Total catch t", ylab="Probability",
                     main=title, col=col, space=0)
-            par(par.old)
+            graphics::par(par.old)
 
             panel
         }
 
         # add sliders to control parameters
-        rp.slider(panel, sizer, r.limit[1], r.limit[2], draw, "Shape r", showvalue=TRUE, resolution=signif(diff(r.limit)/100, 3))
-        rp.slider(panel, rho, rho.limit[1], rho.limit[2], draw, "Prevalence rho (probability present)", showvalue=TRUE, resolution=signif(diff(rho.limit)/100, 3))
-        rp.slider(panel, mu, mu.limit[1], mu.limit[2], draw, "Abundance mu (mean density)", showvalue=TRUE, resolution=signif(diff(mu.limit)/100, 3))
-        rp.slider(panel, area, a.limit[1], a.limit[2], draw, "Survey area a", showvalue=TRUE, resolution=signif(diff(a.limit)/100, 3))
-        rp.slider(panel, d, d.limit[1], d.limit[2], draw, "Number of runs d", showvalue=TRUE, resolution=ceiling(diff(d.limit)/100))
-        rp.slider(panel, q, q.limit[1], q.limit[2], draw, "Catch probability q", showvalue=TRUE, resolution=signif(diff(q.limit)/100, 3))
+        rpanel::rp.slider(panel, sizer, r.limit[1], r.limit[2], draw, "Shape r", showvalue=TRUE, resolution=signif(diff(r.limit)/100, 3))
+        rpanel::rp.slider(panel, rho, rho.limit[1], rho.limit[2], draw, "Prevalence rho (probability present)", showvalue=TRUE, resolution=signif(diff(rho.limit)/100, 3))
+        rpanel::rp.slider(panel, mu, mu.limit[1], mu.limit[2], draw, "Abundance mu (mean density)", showvalue=TRUE, resolution=signif(diff(mu.limit)/100, 3))
+        rpanel::rp.slider(panel, area, a.limit[1], a.limit[2], draw, "Survey area a", showvalue=TRUE, resolution=signif(diff(a.limit)/100, 3))
+        rpanel::rp.slider(panel, d, d.limit[1], d.limit[2], draw, "Number of runs d", showvalue=TRUE, resolution=ceiling(diff(d.limit)/100))
+        rpanel::rp.slider(panel, q, q.limit[1], q.limit[2], draw, "Catch probability q", showvalue=TRUE, resolution=signif(diff(q.limit)/100, 3))
         if (eqr)
-            rp.slider(panel, catch, c.limit[1], c.limit[2], draw, "Total catch t", showvalue=TRUE, resolution=1)
+            rpanel::rp.slider(panel, catch, c.limit[1], c.limit[2], draw, "Total catch t", showvalue=TRUE, resolution=1)
     }
 }
 

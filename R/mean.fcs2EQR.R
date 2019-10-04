@@ -20,6 +20,7 @@
 #' @export
 mean <- function(x, ...) UseMethod("mean")
 
+#' @rdname mean
 #' @export
 mean.fcs2EQR <-
 function(x, ...)

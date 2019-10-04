@@ -162,7 +162,7 @@ function(runTotalVars = NULL, allRunsTotalVar = NULL, allRunsRangeVars = NULL, d
                 orders <- -1
             else if (termType == "linear") {
                 # count number of terms in there already
-                termCount <- length(grep(term, currentTerms, fix=TRUE))
+                termCount <- length(grep(term, currentTerms, fixed=TRUE))
 
                 # continue from current place
                 if (termCount < maxNoOrders)
@@ -170,11 +170,11 @@ function(runTotalVars = NULL, allRunsTotalVar = NULL, allRunsRangeVars = NULL, d
 
             } else if (termType == "continuous") {
                 # if rw2 term there, break
-                if (length(grep(paste("rw2(", term, ")", sep=""), currentTerms, fix=TRUE)) > 0)
+                if (length(grep(paste("rw2(", term, ")", sep=""), currentTerms, fixed=TRUE)) > 0)
                     next
 
                 # count number of terms in there already
-                termCount <- length(grep(term, currentTerms, fix=TRUE))
+                termCount <- length(grep(term, currentTerms, fixed=TRUE))
 
                 # continue from current place
                 if (termCount < maxNoOrders)
@@ -199,7 +199,7 @@ function(runTotalVars = NULL, allRunsTotalVar = NULL, allRunsRangeVars = NULL, d
                     term <- paste("I(", rhoVars[i], "^", j, ")", sep="")
 
                 # check that term isn't already there (possible if multiple sweeps)
-                if (length(grep(term, currentTerms, fix=TRUE)) > 0)
+                if (length(grep(term, currentTerms, fixed=TRUE)) > 0)
                     break
 
                 # add term
@@ -512,7 +512,7 @@ function(runTotalVars = NULL, allRunsTotalVar = NULL, allRunsRangeVars = NULL, d
             orders <- -1
         else if (termType == "linear") {
             # count number of terms in there already
-            termCount <- length(grep(term, currentTerms, fix=TRUE))
+            termCount <- length(grep(term, currentTerms, fixed=TRUE))
 
             # continue from current place
             if (termCount < maxNoOrders)
@@ -520,11 +520,11 @@ function(runTotalVars = NULL, allRunsTotalVar = NULL, allRunsRangeVars = NULL, d
 
         } else if (termType == "continuous") {
             # if rw2 term there, break
-            if (length(grep(paste("rw2(", term, ")", sep=""), currentTerms, fix=TRUE)) > 0)
+            if (length(grep(paste("rw2(", term, ")", sep=""), currentTerms, fixed=TRUE)) > 0)
                 next
 
             # count number of terms in there already
-            termCount <- length(grep(term, currentTerms, fix=TRUE))
+            termCount <- length(grep(term, currentTerms, fixed=TRUE))
 
             # continue from current place
             if (termCount < maxNoOrders)
@@ -549,7 +549,7 @@ function(runTotalVars = NULL, allRunsTotalVar = NULL, allRunsRangeVars = NULL, d
                 term <- paste("I(", muVars[i], "^", j, ")", sep="")
 
             # check that term isn't already there (possible if multiple sweeps)
-            if (length(grep(term, currentTerms, fix=TRUE)) > 0)
+            if (length(grep(term, currentTerms, fixed=TRUE)) > 0)
                 break
 
             # add term
