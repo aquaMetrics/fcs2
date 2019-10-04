@@ -7,7 +7,10 @@
 #' The logit transformation is defined by \eqn{logit(x) = log(x) - log(1 - x)}
 #' so that its inverse expit is given by \eqn{expit(x) = 1 / (1 + exp(-x))}.
 #'
+#' @name logit
 #' @aliases logit expit
+#' @usage logit(x)
+#' @usage expit(x)
 #' @param x a numeric vector or matrix
 #' @return A vector or matrix the same size as \code{x} containing the
 #' transformed values.
@@ -21,6 +24,9 @@ function(x)
 
 
 ## expit
+#' @rdname logit
+#' @export
 expit <-
-function(x)
+function(x) {
     1 / (1 + exp(-x))
+}

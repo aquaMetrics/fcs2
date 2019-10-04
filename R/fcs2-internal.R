@@ -2,6 +2,7 @@
 #' @import utils
 #' @import INLA
 #' @import R2OpenBUGS
+#' @useDynLib fcs2
 
 # Internal (undocumented) functions that should not typically be called by the user
 # Extracts or calculates the total number of fish caught over all runs

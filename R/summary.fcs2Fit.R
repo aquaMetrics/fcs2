@@ -80,10 +80,11 @@ function(object, prior = TRUE, inla = is.null(object$bugsFit),
     # other data
     ret$surveyAreaVar <- object$surveyAreaVar
     ret$N <- object$N
-    if (length(object$na.action) > 0 && class(object$na.action) == "omit")
+    if (length(object$na.action) > 0 && class(object$na.action) == "omit") {
         ret$nRemoved <- length(object$na.action)
-    else if (sum(is.na(object$dataType)) > 0)
+    } else if (sum(is.na(object$dataType)) > 0) {
         ret$nMissing <- sum(is.na(object$dataType))
+    }
 
 
     # model formulae (mu and rho)
@@ -142,7 +143,7 @@ function(object, prior = TRUE, inla = is.null(object$bugsFit),
         # abundance mu
         if (!is.null(object$inlaFits$muFit)) {
             mx <- rbind(object$inlaFits$muFit$summary.hyperpar[1, , drop=FALSE],
-                        object$inlaFits$muFit$summary.fixed[, -6, drop=FALSE])
+                        object$inlaFits$muFit$summary.fixed[, -7, drop=FALSE])
 
             # add significance columns if linear or individual random terms
             if (nrow(object$inlaFits$muFit$summary.fixed) > 1 || (allVars && length(object$inlaFits$muFit$summary.random) > 0))

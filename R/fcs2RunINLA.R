@@ -122,7 +122,7 @@ function(fit, run = TRUE, verbose = TRUE)
             cat("Fitting prevalence with INLA ...")
         flush.console()
         suppressWarnings({
-            prevalenceFit <- inla(fm, "binomial", inlaData,
+            prevalenceFit <- inla(fm, "binomial", data=inlaData,
                                   Ntrials=Ntrials, control.compute=list(dic=TRUE))
         })
 
@@ -209,9 +209,10 @@ function(fit, run = TRUE, verbose = TRUE)
                 cat("Fitting abundance with INLA ...")
             flush.console()
             suppressWarnings({
-                abundanceFit <- inla(fm, "nbinomial", inlaData, E=E, control.compute=list(dic=TRUE) ,
+                abundanceFit <- inla(fm, "nbinomial", data=inlaData, E=E, control.compute=list(dic=TRUE) ,
                                      #control.data=list(prior="gaussian", param=fit$prior.parameters[["r"]]))
-                                     control.family=list(hyper=list(prior="gaussian", param=fit$prior.parameters[["r"]])))
+                                     #control.family=list(hyper=list(prec=list(prior="gaussian", param=fit$prior.parameters[["r"]]))))
+                                     control.family=list(prior="gaussian", param=fit$prior.parameters[["r"]]))
             })
 
             # check that INLA ran ok
