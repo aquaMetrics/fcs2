@@ -2,7 +2,10 @@
 #'
 #' Calculates posterior samples of the abundance or prevalence model components
 #'
-#' @aliases prevalence
+#' @name abundance
+#' @aliases abundance prevalence
+#' @usage abundance(fit, newData, subset = 1:nrow(newData), na.action, breakdown = FALSE)
+#' @usage prevalence(fit, newData, subset = 1:nrow(newData), na.action, breakdown = FALSE)
 #' @param fit an \code{"fcs2Fit"} object containing a full \acronym{FCS2} model
 #'   fit, as returned from \code{\link{fcs2FitModel}} with \code{runBUGS =
 #'   TRUE}.
@@ -222,7 +225,8 @@ function(fit, newData, subset = 1:nrow(newData), na.action, breakdown = FALSE)
 }
 
 
-## prevalence
+#' @rdname abundance
+#' @export
 prevalence <-
 function(fit, newData, subset = 1:nrow(newData), na.action, breakdown = FALSE)
 {

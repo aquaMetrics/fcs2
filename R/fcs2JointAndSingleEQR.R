@@ -167,8 +167,10 @@ function(fit1, ..., newData, joinByVar = NULL, subset = 1:nrow(newData), na.acti
 
     ## Sample sets of indices corresponding to parameter samples
     ix <- array(dim=c(n.samples, k))
-    for (i in 1:k)
+    for (i in 1:k){
+        set.seed(42) #uncomment for testing
         ix[, i] <- sample(1:fits[[i]]$bugsFit$n.sims, n.samples, replace=TRUE)
+    }
 
     # for each fit, calculate abundance and prevalence, storing only values needed
     nbmean <- zeroprob <- array(NA, dim=c(n.samples, length(subset), k))
