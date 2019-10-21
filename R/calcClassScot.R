@@ -87,6 +87,7 @@
 #'   \item{Trout_parr.Run4Total}{Total salmon parr (1++) caught in Run 4. Leave
 #'   blank if no 4th run fished	Field data 	0-25}
 #'   }
+#' @param seed random number seed to alow repeatable results
 #' @return dataframe
 #' @export
 #'
@@ -94,7 +95,7 @@
 #'   \dontrun{
 #'   results <- calcClassScot(data = fcs2::demo_data)#'
 #' }
-calcClassScot <- function(data) {
+calcClassScot <- function(data, seed = NULL) {
   colnames(data) <- sub("#", ".", colnames(data))
 
   ## Set pressure variables to reference values (values set using database version 13 - see section 6.4 of Phase 3 report)
@@ -218,10 +219,10 @@ calcClassScot <- function(data) {
   cat("Loading model fits\n")
   flush.console()
 
-  SalmonFryFit <- fcs2:::SalmonFryFit
-  SalmonParrFit <- fcs2:::SalmonParrFit
-  TroutFryFit <- fcs2:::TroutFryFit
-  TroutParrFit <- fcs2:::TroutParrFit
+  SalmonFryFit <- SalmonFryFit
+  SalmonParrFit <- SalmonParrFit
+  TroutFryFit <- TroutFryFit
+  TroutParrFit <- TroutParrFit
   ## Calculate all EQRs (single and joint EQRs for each survey and joined
   ## by waterbody)
   ## NOTE: This may take some time! - reduce n.samples and n.sims to speed
@@ -239,7 +240,8 @@ calcClassScot <- function(data) {
                                 na.action = na.pass,
                                 n.samples = 500,
                                 n.sims = 1000,
-                                showProgress = TRUE
+                                showProgress = TRUE,
+                                seed = seed
   )
 
   ## Save EQRs with boundaries
