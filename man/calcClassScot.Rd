@@ -5,7 +5,7 @@
 \alias{calcClassScot}
 \title{Calculate Classification Results for Scotland}
 \usage{
-calcClassScot(data)
+calcClassScot(data, seed = NULL)
 }
 \arguments{
 \item{data}{dataframe with columns: \describe{ \item{DataHeldBy}{Data owner
@@ -89,6 +89,8 @@ blank if no 3rd run fished    Field data     0-43}
 \item{Trout_parr.Run4Total}{Total salmon parr (1++) caught in Run 4. Leave
 blank if no 4th run fished    Field data     0-25}
 }}
+
+\item{seed}{random number seed to alow repeatable results}
 }
 \value{
 dataframe

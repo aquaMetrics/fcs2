@@ -5,7 +5,9 @@
 \alias{prevalence}
 \title{Posterior Samples of Abundance and Prevalence Model Components}
 \usage{
-abundance(fit, newData, subset = 1:nrow(newData), na.action,
+abundance(fit, newData, subset = 1:nrow(newData), na.action, breakdown = FALSE)
+
+prevalence(fit, newData, subset = 1:nrow(newData), na.action,
   breakdown = FALSE)
 }
 \arguments{

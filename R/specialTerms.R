@@ -3,17 +3,19 @@
 #' @encoding UTF-8
 #' @title Special Non-Linear Terms for FCS2 Abundance and Prevalence Regressions
 #'
-#' @description
-#' Non-linear random walk and spatial terms that can be used in addition to
-#' linear terms in the \acronym{FCS2} abundance and prevalence regression
-#' equations.
+#' @description Non-linear random walk and spatial terms that can be used in
+#' addition to linear terms in the \acronym{FCS2} abundance and prevalence
+#' regression equations.
 #'
 #' @name specialTerms
 #' @aliases rw1 rw2 spatial
 #'
-#' @usage rw1(val, noLevels = 10, boundaries, scale.parameters, precision.parameters, initial.values, precision.initial.value)
-#' @usage rw2(val, noLevels = 10, boundaries, scale.parameters, precision.parameters, initial.values, precision.initial.value)
-#' @usage spatial(val, adjacency, scale.parameters, precision.parameters, initial.values, precision.initial.value)
+#' @usage rw1(val, noLevels = 10, boundaries, scale.parameters,
+#'   precision.parameters, initial.values, precision.initial.value)
+#' @usage rw2(val, noLevels = 10, boundaries, scale.parameters,
+#'   precision.parameters, initial.values, precision.initial.value)
+#' @usage spatial(val, adjacency, scale.parameters, precision.parameters,
+#'   initial.values, precision.initial.value)
 #'
 #' @param val a covariate to use for the non-linear term.  \code{rw1} and
 #'   \code{rw2} assume a continuous variable but \code{spatial} requires an

@@ -46,6 +46,7 @@
 #' joins surveys.
 #' @param showProgress whether to display the current progress while generating
 #' \acronym{EQR} samples.
+#' @param seed set random seed to allow repeatable results.
 #' @return If \code{both = FALSE} (the default), a single \code{"fcs2EQR"}
 #' object containing Monte Carlo \acronym{EQR} samples for multiple fits is
 #' returned.  The \code{"fcs2EQR"} object is essentially an array with Monte
@@ -116,7 +117,7 @@
 #'
 fcs2JointAndSingleEQR <-
 function(fit1, ..., newData, joinByVar = NULL, subset = 1:nrow(newData), na.action,
-         n.samples = 1000, n.sims = 1000, both = FALSE, showProgress = TRUE)
+         n.samples = 1000, n.sims = 1000, both = FALSE, showProgress = TRUE, seed = NULL)
 {
     # check 'newData' provided
     if (missing(newData))
@@ -167,8 +168,13 @@ function(fit1, ..., newData, joinByVar = NULL, subset = 1:nrow(newData), na.acti
 
     ## Sample sets of indices corresponding to parameter samples
     ix <- array(dim=c(n.samples, k))
-    for (i in 1:k)
+    for (i in 1:k){
+        if(!is.null(seed)) {
+            set.seed(seed) #uncomment for testing
+        }
+
         ix[, i] <- sample(1:fits[[i]]$bugsFit$n.sims, n.samples, replace=TRUE)
+    }
 
     # for each fit, calculate abundance and prevalence, storing only values needed
     nbmean <- zeroprob <- array(NA, dim=c(n.samples, length(subset), k))
