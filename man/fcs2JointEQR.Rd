@@ -6,7 +6,7 @@
 \usage{
 fcs2JointEQR(fit1, ..., newData, joinByVar = NULL,
   subset = 1:nrow(newData), na.action, n.samples = 1000,
-  n.sims = 1000, both = FALSE, showProgress = TRUE)
+  n.sims = 1000, both = FALSE, showProgress = TRUE, seed = NULL)
 }
 \arguments{
 \item{fit1}{an \code{"fcs2Fit"} object containing a full \acronym{FCS2}
@@ -59,6 +59,8 @@ joins surveys.}
 
 \item{showProgress}{whether to display the current progress while generating
 \acronym{EQR} samples.}
+
+\item{seed}{set random seed to allow repeatable results.}
 }
 \value{
 If \code{both = FALSE} (the default), a single \code{"fcs2EQR"}
