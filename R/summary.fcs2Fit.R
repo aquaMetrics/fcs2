@@ -196,7 +196,7 @@ function(object, prior = TRUE, inla = is.null(object$bugsFit),
             # number fitted and DIC
             ret$inla$muN <- nrow(object$inlaFits$muFit$data)
             if (!is.null(object$inlaFits$muFit$dic))
-                ret$inla$muDIC <- object$inlaFits$muFit$dic[4,]
+                ret$inla$muDIC <- object$inlaFits$muFit$dic$local.p.eff
         }
 
 
@@ -254,7 +254,7 @@ function(object, prior = TRUE, inla = is.null(object$bugsFit),
         # number fitted and DIC
         ret$inla$rhoN <- nrow(object$inlaFits$rhoFit$data)
         if (!is.null(object$inlaFits$rhoFit$dic))
-            ret$inla$rhoDIC <- object$inlaFits$rhoFit$dic[4,]
+            ret$inla$rhoDIC <- object$inlaFits$rhoFit$dic$local.p.eff
     }
 
     ## BUGS
