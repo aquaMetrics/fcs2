@@ -8,7 +8,8 @@
 \alias{spatial}
 \title{Special Non-Linear Terms for FCS2 Abundance and Prevalence Regressions}
 \usage{
-rw1(val, noLevels = 10, boundaries, scale.parameters, precision.parameters, initial.values, precision.initial.value)
+rw1(val, noLevels = 10, boundaries, scale.parameters,
+  precision.parameters, initial.values, precision.initial.value)
 
 rw2(val, noLevels = 10, boundaries, scale.parameters,
   precision.parameters, initial.values, precision.initial.value)
@@ -61,9 +62,9 @@ of the number of neighbours, which should equal \code{sum(num)} and
 given a name and then loaded into \R.}
 }
 \description{
-Non-linear random walk and spatial terms that can be used in addition to
-linear terms in the \acronym{FCS2} abundance and prevalence regression
-equations.
+Non-linear random walk and spatial terms that can be used in
+addition to linear terms in the \acronym{FCS2} abundance and prevalence
+regression equations.
 }
 \details{
 Special Non-Linear Terms for FCS2 Abundance and Prevalence Regressions

@@ -1,0 +1,19 @@
+model {
+	for (i in 1:N) {
+		ones[i] <- 1
+		ones[i] ~ dbern(likelihood[i])
+		likelihood[i] <- (1 - rho[i]) * equals(catch[i], 0) +
+				rho[i] * exp(loggam(catch[i] + r) - loggam(r) - loggam(catch[i] + 1) + r * log(r) +
+							 catch[i] * log(area[i] * mu[i]) - (r + catch[i]) * log(r + area[i] * mu[i]))
+
+		log(mu[i]) <- beta.const
+
+		logit(rho[i]) <- gamma.const
+	}
+
+	r ~ dlnorm(mu.r, tau.r)
+
+	beta.const ~ dnorm(mean.beta.const, prec.beta.const)
+
+	gamma.const ~ dnorm(mean.gamma.const, prec.gamma.const)
+}

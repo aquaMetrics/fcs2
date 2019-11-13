@@ -1,6 +1,12 @@
 # fcs2 - Fisheries classification scheme 2
 
-Provides functions that carry out SNIFFER's implementation of the Environment Agency's Fisheries Classification Scheme 2 (FCS2). This package was developed for use in Scotland, Northern Ireland and the Republic of Ireland as part of SNIFFER project WFD68c: Science Work.
+This package provides a *limited* update to the original fcs2 packaged to allow it to run fish classification on R >= 3.4. This package was developed for use in Scotland, Northern Ireland and the Republic of Ireland as part of SNIFFER project WFD68c: Science Work. It carries out SNIFFER's implementation of the Environment Agency's Fisheries Classification Scheme 2 (FCS2). 
+  
+The original package provided by HR Wallingford ran on R <= 2.1.
+
+## Future Developments
+
+Currently, this package only runs the classification for Scotland. The original package also provides functions to rebuild the underlying classificaiton model based on new fish survey data. These functions no longer work due to changes to the dependency (INLA and openBUGS) in the intervening years. See github issues for outstanding tasks.
 
 ## Quick Start
 
@@ -34,7 +40,7 @@ write.csv(results, file = "YOUR_RESULTS.csv")
 
 ## Optional Dependencies
 
-If creating new models (rather than running the classification with existing models) install [openBUGS](http://www.openbugs.net/w/Downloads) on your computer.
+If creating new models (rather than running the classification with existing models) install [openBUGS](http://www.openbugs.net/w/Downloads) on your computer. NOTE - using openBUGS with this package has not been tested -  see issues.
 
 See `fcs2FitModel` function for more details.
 
