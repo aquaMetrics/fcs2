@@ -4,9 +4,19 @@
 \alias{ppplot}
 \title{Probability-Probability Plot of FCS2 Model Fit}
 \usage{
-ppplot(fit, dataFrame, subset = 1:nrow(dataFrame), na.action,
-  n.sims = 100, ciprob = 0.95, title = "", addCI = TRUE,
-  progressBar = TRUE, mu, rho, seed = NULL)
+ppplot(
+  fit,
+  dataFrame,
+  subset = 1:nrow(dataFrame),
+  na.action,
+  n.sims = 100,
+  ciprob = 0.95,
+  title = "",
+  addCI = TRUE,
+  progressBar = TRUE,
+  mu,
+  rho
+)
 }
 \arguments{
 \item{fit}{an \code{"fcs2Fit"} object, usually returned by
@@ -51,8 +61,6 @@ generated from \code{\link{abundance}} using the same \code{fit},
 \item{rho}{a matrix of prevalence samples can optionally be provided, as
 generated from \code{\link{prevalence}} using the same \code{fit},
 \code{dataFrame} and \code{subset}.}
-
-\item{seed}{set random seed to allow repeatable results.}
 }
 \value{
 If \code{addCI} is \code{TRUE}, the proportion of observed

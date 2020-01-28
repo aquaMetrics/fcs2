@@ -4,8 +4,14 @@
 \alias{fcs2SpatialSummary}
 \title{Summary of Spatial Terms in FCS2 Model}
 \usage{
-fcs2SpatialSummary(map, fit, posterior = !is.null(fit$bugsFit),
-  inla = !posterior, abundance = TRUE, prevalence = TRUE)
+fcs2SpatialSummary(
+  map,
+  fit,
+  posterior = !is.null(fit$bugsFit),
+  inla = !posterior,
+  abundance = TRUE,
+  prevalence = TRUE
+)
 }
 \arguments{
 \item{map}{a \code{sp::SpatialPolygonsDataFrame} object containing

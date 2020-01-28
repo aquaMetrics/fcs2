@@ -3,7 +3,7 @@ Type: Package
 Title: Fisheries Classification Scheme 2 For SNIFFER
 Version: 1.0
 Author: David Wyncoll <d.wyncoll@hrwallingford.co.uk> of HR Wallingford <www.hrwallingford.co.uk> for SNIFFER <www.sniffer.org.uk>
-Maintainer: Carlos Ruiz <carlos.ruiz@sepa.org.uk>
+Maintainer: Tim Foster <tim.foster@sepa.org.uk>
 Description: Provides functions that carry out SNIFFER's implementation of the Environment Agency's Fisheries Classification Scheme 2 (FCS2).
 	This package was developed for use in Scotland, Northern Ireland and the Republic of Ireland as part of SNIFFER project WFD68c: Science Work.
 Depends: R (>= 3.4.0)
@@ -27,6 +27,6 @@ Encoding: UTF-8
 Packaged: 2019-05-01 09:19:28 UTC; tim.foster
 NeedsCompilation: yes
 ByteCompile: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 URL: https://github.com/aquaMetrics/fcs2
 BugReports: https://github.com/aquaMetrics/fcs2/issues

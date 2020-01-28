@@ -4,8 +4,20 @@
 \alias{plotCatchPMF}
 \title{Plot Probability Mass Function of Predicted Total Catch}
 \usage{
-plotCatchPMF(fit, newData, subset = 1, na.action, boundaries, mu, rho,
-  xmax, xmaxscale = 2, maxpts = 200, title, ...)
+plotCatchPMF(
+  fit,
+  newData,
+  subset = 1,
+  na.action,
+  boundaries,
+  mu,
+  rho,
+  xmax,
+  xmaxscale = 2,
+  maxpts = 200,
+  title,
+  ...
+)
 }
 \arguments{
 \item{fit}{an \code{"fcs2Fit"} object containing a full \acronym{FCS2} model

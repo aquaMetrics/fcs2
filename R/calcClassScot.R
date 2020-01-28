@@ -6,7 +6,7 @@
 #' @description
 #' R Script for calculating new EQRs (for latest FCS2 model) for Scotland
 #'
-#' @param data dataframe with columns: \describe{ \item{DataHeldBy}{Data owner
+#' @param data Dataframe with columns: \describe{ \item{DataHeldBy}{Data owner
 #'   descriptor	Field data} \item{SiteCode}{Unique site code e.g. SEPA location
 #'   code	Field data} \item{SiteName}{Site name	Field data}
 #'   \item{SurveyDate}{Date of survey	Field data} \item{WBId}{SEPA Water body
@@ -48,16 +48,15 @@
 #'   occupied by agriculture with significant areas or natural vegetation (243)
 #'   GIS analysis of Corrine data	0-99.9} \item{LandUse.ConiferousForests}{% of
 #'   catchment with coniferous forest landuse (Corrine Code 312)	GIS analysis of
-#'   Corrine data	0-92.9} \item{Field}{Description	Source}
-#'   \item{LandUse.Wetlands}{% of catchment with wetland landuse. Defined as the
-#'   following Corrine codes: Inland marshes (411), Peat bogs (412), Intertidal
-#'   flats (423)	GIS analysis of Corrine data	0-95.7}
-#'   \item{Substrate.Small}{Total % of survey bed substrate composed of "High
-#'   Organic", "silt", "sand" and "gravel", from SFCC survey protocol	Field data
-#'   0-100} \item{Substrate.Large}{Total % of survey bed substrate composed of
-#'   "Pebble", "cobble" and "boulder" from SFCC survey protocol	Field data
-#'   0-100} \item{Substrate.Bedrock}{Total % of survey bed composed of "Bedrock"
-#'   from SFCC survey protocol	Field data 	0-90}
+#'   Corrine data	0-92.9} \item{LandUse.Wetlands}{% of catchment with wetland
+#'   landuse. Defined as the following Corrine codes: Inland marshes (411),
+#'   Peat bogs (412), Intertidal flats (423)	GIS analysis of Corrine data
+#'   0-95.7} \item{Substrate.Small}{Total % of survey bed substrate composed of
+#'   "High Organic", "silt", "sand" and "gravel", from SFCC survey protocol
+#'   Field data 0-100} \item{Substrate.Large}{Total % of survey bed substrate
+#'   composed of "Pebble", "cobble" and "boulder" from SFCC survey protocol
+#'   Field data 0-100} \item{Substrate.Bedrock}{Total % of survey bed composed
+#'   of "Bedrock" from SFCC survey protocol	Field data 	0-90}
 #'   \item{Salmon_fry.Run1Total}{Total salmon fry (0+) caught in Run 1	Field
 #'   data 	0-1014} \item{Salmon_fry.Run2Total}{Total salmon fry (0+) caught in
 #'   Run 2. Leave blank if no 2nd run fished	Field data 	0-352}
@@ -87,16 +86,26 @@
 #'   \item{Trout_parr.Run4Total}{Total salmon parr (1++) caught in Run 4. Leave
 #'   blank if no 4th run fished	Field data 	0-25}
 #'   }
-#' @param seed random number seed to alow repeatable results
+#' @param seed Random number seed to allow repeatable results
+#' @param save.csv Either a logical value (\code{TRUE}/\code{FALSE}) or a
+#' character vector containing a path name. When it is \code{TRUE} it allows
+#' the user to select a destination folder (Windows only; in other OSs it
+#' simply sets the destination folder to the user's home path)
 #' @return dataframe
 #' @export
 #'
 #' @examples
 #'   \dontrun{
-#'   results <- calcClassScot(data = fcs2::demo_data)#'
+#'   results <- calcClassScot(data = fcs2::demo_data)
+#'
+#'   res42 <- calcClassScot(data = fcs2::demo_data, seed = 42,
+#'   save.csv = path.expand('~'))
 #' }
-calcClassScot <- function(data, seed = NULL) {
+calcClassScot <- function(data, seed = NULL, save.csv=FALSE) {
   colnames(data) <- sub("#", ".", colnames(data))
+
+  if (is.null(seed)) seed <- sample(.Machine$integer.max, 1)
+  set.seed(seed)
 
   ## Set pressure variables to reference values (values set using database version 13 - see section 6.4 of Phase 3 report)
   ##
@@ -219,10 +228,6 @@ calcClassScot <- function(data, seed = NULL) {
   cat("Loading model fits\n")
   flush.console()
 
-  SalmonFryFit <- SalmonFryFit
-  SalmonParrFit <- SalmonParrFit
-  TroutFryFit <- TroutFryFit
-  TroutParrFit <- TroutParrFit
   ## Calculate all EQRs (single and joint EQRs for each survey and joined
   ## by waterbody)
   ## NOTE: This may take some time! - reduce n.samples and n.sims to speed
@@ -240,8 +245,7 @@ calcClassScot <- function(data, seed = NULL) {
                                 na.action = na.pass,
                                 n.samples = 500,
                                 n.sims = 1000,
-                                showProgress = TRUE,
-                                seed = seed
+                                showProgress = TRUE
   )
 
   ## Save EQRs with boundaries
@@ -259,7 +263,7 @@ calcClassScot <- function(data, seed = NULL) {
   boundaries <- c(0.009, 0.11, 0.6, 0.845) # calibrated boundaries for Scotland
 
   # save
-  # save(file = "EQRs.RData", EQRBySurvey, EQRByWBId, boundaries)
+  #save(file = "EQRs.RData", EQRBySurvey, EQRByWBId, boundaries)
 
   ## Summarise EQRs
   ##
@@ -319,5 +323,39 @@ calcClassScot <- function(data, seed = NULL) {
   # save to R workspace
   #save(file = "EQRSummary.RData", eqrSum)
   #cat("Done\n")
+
+  #ADD columns for arithmetic mean per WB for All species, and seed
+  eqrSum$`All species WB EQR arithmetic mean` <- with(eqrSum,
+                                                      ave(`All species survey EQR mean`, WBId, FUN = mean))
+  eqrSum$seed <- seed
+
+  if (isTRUE(save.csv) || inherits(save.csv, "character")) {
+
+    if (inherits(save.csv, "character")) {
+
+      if(dir.exists(save.csv)) {
+        folder <- save.csv
+      } else { message("Couldn't find the directory specified in 'save.csv'") }
+
+    } else { #just TRUE
+
+      if (exists("choose.dir", where=asNamespace("utils"), mode="function")) {
+        ans <- choose.dir(caption = "caption")
+        if (!is.na(ans)) folder <- ans
+      } else {
+        home <- path.expand("~")
+        ans <- askYesNo(paste0("Do you agree to save the results in ", home,"?"))
+        if (isTRUE(ans)) folder <- home
+      }
+
+    }
+
+    save(data, file = file.path(folder,"ScotDataAtRef.RData"))
+    save(EQRBySurvey, EQRByWBId, boundaries, file = file.path(folder,"EQRs.RData"))
+    save(eqrSum, file = file.path(folder,"EQRSummary.RData"))
+    write.csv(eqrSum, file = file.path(folder,"EQRSummary.csv"), row.names = TRUE, na = "")
+
+  }
+
   return(eqrSum)
 }

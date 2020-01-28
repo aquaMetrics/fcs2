@@ -5,9 +5,17 @@
 \alias{plot.fcs2Fit}
 \title{Plot FCS2 Model Fit}
 \usage{
-\method{plot}{fcs2Fit}(x, variables = variable.names(x), prior = TRUE,
-  posterior = !is.null(x$bugsFit), inla = !posterior, legend = TRUE,
-  samples = FALSE, groupLinearVars = posterior, ...)
+\method{plot}{fcs2Fit}(
+  x,
+  variables = variable.names(x),
+  prior = TRUE,
+  posterior = !is.null(x$bugsFit),
+  inla = !posterior,
+  legend = TRUE,
+  samples = FALSE,
+  groupLinearVars = posterior,
+  ...
+)
 }
 \arguments{
 \item{x}{an \code{"fcs2Fit"} object, as returned from

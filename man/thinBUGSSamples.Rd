@@ -4,8 +4,14 @@
 \alias{thinBUGSSamples}
 \title{Thin BUGS Samples}
 \usage{
-thinBUGSSamples(fit, n.thin = 1, first = 1,
-  last = fit$bugsFit$n.keep, which, chains = 1:fit$bugsFit$n.chains)
+thinBUGSSamples(
+  fit,
+  n.thin = 1,
+  first = 1,
+  last = fit$bugsFit$n.keep,
+  which,
+  chains = 1:fit$bugsFit$n.chains
+)
 }
 \arguments{
 \item{fit}{fit}

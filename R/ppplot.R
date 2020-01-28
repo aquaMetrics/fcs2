@@ -46,7 +46,6 @@
 #' @param rho a matrix of prevalence samples can optionally be provided, as
 #' generated from \code{\link{prevalence}} using the same \code{fit},
 #' \code{dataFrame} and \code{subset}.
-#' @param seed set random seed to allow repeatable results.
 #' @return If \code{addCI} is \code{TRUE}, the proportion of observed
 #' \acronym{P-P} plot points within the confidence limits is printed to screen
 #' and invisibly returned.
@@ -57,7 +56,7 @@
 #' @export
 ppplot <-
 function(fit, dataFrame, subset = 1:nrow(dataFrame), na.action, n.sims = 100,
-         ciprob = 0.95, title = "", addCI = TRUE, progressBar = TRUE, mu, rho, seed=NULL)
+         ciprob = 0.95, title = "", addCI = TRUE, progressBar = TRUE, mu, rho)
 {
     if (class(subset) == "logical" || min(subset) == 0)
         subset <- which(as.logical(subset))
@@ -150,7 +149,6 @@ function(fit, dataFrame, subset = 1:nrow(dataFrame), na.action, n.sims = 100,
             bar <- txtProgressBar(style=3)
 
         # sample indicies corresponding to Monte Carlo sample
-        if(!is.null(seed)) { set.seed(seed) }
         index <- sample(1:nrow(mu), n.sims, replace=TRUE)
 
         # sample from fitted distribution

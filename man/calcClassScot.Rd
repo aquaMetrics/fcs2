@@ -5,10 +5,10 @@
 \alias{calcClassScot}
 \title{Calculate Classification Results for Scotland}
 \usage{
-calcClassScot(data, seed = NULL)
+calcClassScot(data, seed = NULL, save.csv = FALSE)
 }
 \arguments{
-\item{data}{dataframe with columns: \describe{ \item{DataHeldBy}{Data owner
+\item{data}{Dataframe with columns: \describe{ \item{DataHeldBy}{Data owner
 descriptor    Field data} \item{SiteCode}{Unique site code e.g. SEPA location
 code    Field data} \item{SiteName}{Site name    Field data}
 \item{SurveyDate}{Date of survey    Field data} \item{WBId}{SEPA Water body
@@ -50,16 +50,15 @@ arable land (211), Complex cultivation patterns (242), Land principally
 occupied by agriculture with significant areas or natural vegetation (243)
 GIS analysis of Corrine data    0-99.9} \item{LandUse.ConiferousForests}{% of
 catchment with coniferous forest landuse (Corrine Code 312)    GIS analysis of
-Corrine data    0-92.9} \item{Field}{Description    Source}
-\item{LandUse.Wetlands}{% of catchment with wetland landuse. Defined as the
-following Corrine codes: Inland marshes (411), Peat bogs (412), Intertidal
-flats (423)    GIS analysis of Corrine data    0-95.7}
-\item{Substrate.Small}{Total % of survey bed substrate composed of "High
-Organic", "silt", "sand" and "gravel", from SFCC survey protocol    Field data
-0-100} \item{Substrate.Large}{Total % of survey bed substrate composed of
-"Pebble", "cobble" and "boulder" from SFCC survey protocol    Field data
-0-100} \item{Substrate.Bedrock}{Total % of survey bed composed of "Bedrock"
-from SFCC survey protocol    Field data     0-90}
+Corrine data    0-92.9} \item{LandUse.Wetlands}{% of catchment with wetland
+landuse. Defined as the following Corrine codes: Inland marshes (411),
+Peat bogs (412), Intertidal flats (423)    GIS analysis of Corrine data
+0-95.7} \item{Substrate.Small}{Total % of survey bed substrate composed of
+"High Organic", "silt", "sand" and "gravel", from SFCC survey protocol
+Field data 0-100} \item{Substrate.Large}{Total % of survey bed substrate
+composed of "Pebble", "cobble" and "boulder" from SFCC survey protocol
+Field data 0-100} \item{Substrate.Bedrock}{Total % of survey bed composed
+of "Bedrock" from SFCC survey protocol    Field data     0-90}
 \item{Salmon_fry.Run1Total}{Total salmon fry (0+) caught in Run 1    Field
 data     0-1014} \item{Salmon_fry.Run2Total}{Total salmon fry (0+) caught in
 Run 2. Leave blank if no 2nd run fished    Field data     0-352}
@@ -90,7 +89,12 @@ blank if no 3rd run fished    Field data     0-43}
 blank if no 4th run fished    Field data     0-25}
 }}
 
-\item{seed}{random number seed to alow repeatable results}
+\item{seed}{Random number seed to allow repeatable results}
+
+\item{save.csv}{Either a logical value (\code{TRUE}/\code{FALSE}) or a
+character vector containing a path name. When it is \code{TRUE} it allows
+the user to select a destination folder (Windows only; in other OSs it
+simply sets the destination folder to the user's home path)}
 }
 \value{
 dataframe
@@ -103,6 +107,9 @@ Calculate Classification Results for Scotland
 }
 \examples{
   \dontrun{
-  results <- calcClassScot(data = fcs2::demo_data)#'
+  results <- calcClassScot(data = fcs2::demo_data)
+
+  res42 <- calcClassScot(data = fcs2::demo_data, seed = 42,
+  save.csv = path.expand('~'))
 }
 }

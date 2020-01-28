@@ -4,10 +4,18 @@
 \alias{fcs2InteractiveLikelihood}
 \title{Interactive FCS2 model likelihood}
 \usage{
-fcs2InteractiveLikelihood(multipass = FALSE, eqr = FALSE,
-  boundaries = NULL, r.limit = c(0.1, 10), mu.limit = c(0, 10),
-  rho.limit = c(0, 1), a.limit = c(0, 10), d.limit = c(1, 7),
-  q.limit = c(0, 1), c.limit = c(0, 20))
+fcs2InteractiveLikelihood(
+  multipass = FALSE,
+  eqr = FALSE,
+  boundaries = NULL,
+  r.limit = c(0.1, 10),
+  mu.limit = c(0, 10),
+  rho.limit = c(0, 1),
+  a.limit = c(0, 10),
+  d.limit = c(1, 7),
+  q.limit = c(0, 1),
+  c.limit = c(0, 20)
+)
 }
 \arguments{
 \item{multipass}{If \code{FALSE} (the default), the \acronym{ZINB}

@@ -4,8 +4,7 @@
 \alias{fcs2InteractivePrediction}
 \title{Interactive FCS2 model prediction}
 \usage{
-fcs2InteractivePrediction(fit, data, init.row, eqr = TRUE,
-  boundaries = NULL)
+fcs2InteractivePrediction(fit, data, init.row, eqr = TRUE, boundaries = NULL)
 }
 \arguments{
 \item{fit}{an \code{"fcs2Fit"} object containing a full \acronym{FCS2} model

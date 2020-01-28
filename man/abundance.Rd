@@ -7,8 +7,15 @@
 \usage{
 abundance(fit, newData, subset = 1:nrow(newData), na.action, breakdown = FALSE)
 
-prevalence(fit, newData, subset = 1:nrow(newData), na.action,
-  breakdown = FALSE)
+prevalence(fit, newData, subset = 1:nrow(newData), na.action, breakdown = FALSE)
+
+prevalence(
+  fit,
+  newData,
+  subset = 1:nrow(newData),
+  na.action,
+  breakdown = FALSE
+)
 }
 \arguments{
 \item{fit}{an \code{"fcs2Fit"} object containing a full \acronym{FCS2} model

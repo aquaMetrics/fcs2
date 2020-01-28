@@ -19,8 +19,15 @@ qzinbinom(p, size, prob, zeroprob, nbmean)
 
 rzinbinom(n, size, prob, zeroprob, nbmean)
 
-rzinbinom_constrained(n, size, prob, zeroprob, nbmean, min = 0,
-  max = Inf)
+rzinbinom_constrained(n, size, prob, zeroprob, nbmean, min = 0, max = Inf)
+
+pzinbinom(q, size, prob, zeroprob, nbmean)
+
+qzinbinom(p, size, prob, zeroprob, nbmean)
+
+rzinbinom(n, size, prob, zeroprob, nbmean)
+
+rzinbinom_constrained(n, size, prob, zeroprob, nbmean, min = 0, max = Inf)
 }
 \arguments{
 \item{x}{x}

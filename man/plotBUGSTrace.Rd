@@ -4,10 +4,18 @@
 \alias{plotBUGSTrace}
 \title{Trace Plots of MCMC Chains from BUGS}
 \usage{
-plotBUGSTrace(fit, variables = variable.names(fit, rw = "singular",
-  spatial = "singular", hyperpar = "prec"),
-  chains = 1:fit$bugsFit$n.chains, nPerPage = 12, col = chains + 1,
-  ylab, ylim, main, ...)
+plotBUGSTrace(
+  fit,
+  variables = variable.names(fit, rw = "singular", spatial = "singular", hyperpar =
+    "prec"),
+  chains = 1:fit$bugsFit$n.chains,
+  nPerPage = 12,
+  col = chains + 1,
+  ylab,
+  ylim,
+  main,
+  ...
+)
 }
 \arguments{
 \item{fit}{an \code{"fcs2Fit"} object containing a full \acronym{FCS2} model

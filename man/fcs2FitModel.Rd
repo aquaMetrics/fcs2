@@ -4,15 +4,33 @@
 \alias{fcs2FitModel}
 \title{Fit the FCS2 Statistical Model}
 \usage{
-fcs2FitModel(runTotalVars = NULL, allRunsTotalVar = NULL,
-  allRunsRangeVars = NULL, muFormula = ~1, rhoFormula = ~1,
-  dataFrame, surveyAreaVar = "SurveyArea", nRunsVar = NULL,
-  subset = 1:nrow(dataFrame), na.action, prior.parameters = list(),
-  initial.values = list(), runINLA, runBUGS = FALSE,
-  estAllRunsTotalVar = NULL, n.chains = 2, n.iter = 2000,
-  n.burnin = floor(n.iter/2), n.thin = max(1, floor(n.chains * (n.iter
-  - n.burnin)/n.sims)), n.sims = 1000, bugsFilename = "model.bug",
-  bugsProgram = "OpenBUGS", verbose = TRUE, fit, ...)
+fcs2FitModel(
+  runTotalVars = NULL,
+  allRunsTotalVar = NULL,
+  allRunsRangeVars = NULL,
+  muFormula = ~1,
+  rhoFormula = ~1,
+  dataFrame,
+  surveyAreaVar = "SurveyArea",
+  nRunsVar = NULL,
+  subset = 1:nrow(dataFrame),
+  na.action,
+  prior.parameters = list(),
+  initial.values = list(),
+  runINLA,
+  runBUGS = FALSE,
+  estAllRunsTotalVar = NULL,
+  n.chains = 2,
+  n.iter = 2000,
+  n.burnin = floor(n.iter/2),
+  n.thin = max(1, floor(n.chains * (n.iter - n.burnin)/n.sims)),
+  n.sims = 1000,
+  bugsFilename = "model.bug",
+  bugsProgram = "OpenBUGS",
+  verbose = TRUE,
+  fit,
+  ...
+)
 }
 \arguments{
 \item{runTotalVars}{a character vector of columns in \code{dataFrame} that

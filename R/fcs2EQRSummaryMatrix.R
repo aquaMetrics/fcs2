@@ -57,7 +57,6 @@
 #'   probability that defines the joint \acronym{EQR}.
 #' @param eqrs the result of \code{\link{fcs2JointAndSingleEQR}} with the above
 #'   arguments can alternatively be given, to save recalculation if available.
-#' @param seed set random seed to allow repeatable results.
 #' @return a matrix with surveys as rows and columns containing the selected
 #'   information.
 #' @seealso \code{\link{fcs2JointAndSingleEQR}}
@@ -67,7 +66,7 @@
 fcs2EQRSummaryMatrix <-
 function(fit1, ..., newData, joinByVar = NULL, subset = 1:nrow(newData), na.action,
          classify = !missing(boundaries), boundaries, summary = "mean", observations = TRUE,
-         predictions = TRUE, n.samples = 1000, n.sims = 1000, eqrs, seed=NULL)
+         predictions = TRUE, n.samples = 1000, n.sims = 1000, eqrs)
 {
     # get default na.action if missing
     if (missing(na.action)) {
@@ -81,7 +80,7 @@ function(fit1, ..., newData, joinByVar = NULL, subset = 1:nrow(newData), na.acti
     # calculate joint and single EQRs, unless provided
     if (missing(eqrs))
         eqrs <- fcs2JointAndSingleEQR(fit1, ..., newData=newData, joinByVar=joinByVar, subset=subset, na.action=na.action,
-                                      n.samples=n.samples, n.sims=n.sims, both=TRUE, seed=seed)
+                                      n.samples=n.samples, n.sims=n.sims, both=TRUE)
 
     # check whether two sets of eqrs
     if (class(eqrs) == "list") {

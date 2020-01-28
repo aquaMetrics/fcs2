@@ -8,6 +8,8 @@
 logit(x)
 
 expit(x)
+
+expit(x)
 }
 \arguments{
 \item{x}{a numeric vector or matrix}

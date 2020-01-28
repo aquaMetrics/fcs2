@@ -5,8 +5,16 @@
 \alias{plot.fcs2EQR}
 \title{Plot EQR Samples}
 \usage{
-\method{plot}{fcs2EQR}(x, survey = 1, species = 1, boundaries,
-  type = "density", title, adjust = 1, ...)
+\method{plot}{fcs2EQR}(
+  x,
+  survey = 1,
+  species = 1,
+  boundaries,
+  type = "density",
+  title,
+  adjust = 1,
+  ...
+)
 }
 \arguments{
 \item{x}{an object of class \code{"fcs2EQR"} containing Monte Carlo

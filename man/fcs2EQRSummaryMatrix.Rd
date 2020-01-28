@@ -4,11 +4,22 @@
 \alias{fcs2EQRSummaryMatrix}
 \title{EQR Summary Matrix}
 \usage{
-fcs2EQRSummaryMatrix(fit1, ..., newData, joinByVar = NULL,
-  subset = 1:nrow(newData), na.action, classify = !missing(boundaries),
-  boundaries, summary = "mean", observations = TRUE,
-  predictions = TRUE, n.samples = 1000, n.sims = 1000, eqrs,
-  seed = NULL)
+fcs2EQRSummaryMatrix(
+  fit1,
+  ...,
+  newData,
+  joinByVar = NULL,
+  subset = 1:nrow(newData),
+  na.action,
+  classify = !missing(boundaries),
+  boundaries,
+  summary = "mean",
+  observations = TRUE,
+  predictions = TRUE,
+  n.samples = 1000,
+  n.sims = 1000,
+  eqrs
+)
 }
 \arguments{
 \item{fit1}{an \code{"fcs2Fit"} object containing a full \acronym{FCS2} model
@@ -77,8 +88,6 @@ probability that defines the joint \acronym{EQR}.}
 
 \item{eqrs}{the result of \code{\link{fcs2JointAndSingleEQR}} with the above
 arguments can alternatively be given, to save recalculation if available.}
-
-\item{seed}{set random seed to allow repeatable results.}
 }
 \value{
 a matrix with surveys as rows and columns containing the selected
