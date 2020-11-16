@@ -4,9 +4,20 @@
 \alias{ppplot}
 \title{Probability-Probability Plot of FCS2 Model Fit}
 \usage{
-ppplot(fit, dataFrame, subset = 1:nrow(dataFrame), na.action,
-  n.sims = 100, ciprob = 0.95, title = "", addCI = TRUE,
-  progressBar = TRUE, mu, rho, seed = NULL)
+ppplot(
+  fit,
+  dataFrame,
+  subset = 1:nrow(dataFrame),
+  na.action,
+  n.sims = 100,
+  ciprob = 0.95,
+  title = "",
+  addCI = TRUE,
+  progressBar = TRUE,
+  mu,
+  rho,
+  seed = NULL
+)
 }
 \arguments{
 \item{fit}{an \code{"fcs2Fit"} object, usually returned by

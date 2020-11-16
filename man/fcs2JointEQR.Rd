@@ -4,9 +4,19 @@
 \alias{fcs2JointEQR}
 \title{Joint EQR}
 \usage{
-fcs2JointEQR(fit1, ..., newData, joinByVar = NULL,
-  subset = 1:nrow(newData), na.action, n.samples = 1000,
-  n.sims = 1000, both = FALSE, showProgress = TRUE, seed = NULL)
+fcs2JointEQR(
+  fit1,
+  ...,
+  newData,
+  joinByVar = NULL,
+  subset = 1:nrow(newData),
+  na.action,
+  n.samples = 1000,
+  n.sims = 1000,
+  both = FALSE,
+  showProgress = TRUE,
+  seed = NULL
+)
 }
 \arguments{
 \item{fit1}{an \code{"fcs2Fit"} object containing a full \acronym{FCS2}

@@ -4,9 +4,16 @@
 \alias{plotSpatialTerm}
 \title{Plot Spatial Term}
 \usage{
-plotSpatialTerm(map, fit, type = "mean", abundance = TRUE,
-  prevalence = TRUE, posterior = !is.null(fit$bugsFit),
-  inla = !posterior, ...)
+plotSpatialTerm(
+  map,
+  fit,
+  type = "mean",
+  abundance = TRUE,
+  prevalence = TRUE,
+  posterior = !is.null(fit$bugsFit),
+  inla = !posterior,
+  ...
+)
 }
 \arguments{
 \item{map}{a \code{SpatialPolygonsDataFrame} object containing

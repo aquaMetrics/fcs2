@@ -4,10 +4,19 @@
 \alias{fcs2WriteModel}
 \title{Write BUGS Model File}
 \usage{
-fcs2WriteModel(filename = "model.bug", muLinearVars = c(),
-  muRWVars = c(), muSpatialVar = NULL, rhoLinearVars = c(),
-  rhoRWVars = c(), rhoSpatialVar = NULL, multiRun = FALSE,
-  catchTotal = TRUE, catchRange = FALSE, qUnif = FALSE)
+fcs2WriteModel(
+  filename = "model.bug",
+  muLinearVars = c(),
+  muRWVars = c(),
+  muSpatialVar = NULL,
+  rhoLinearVars = c(),
+  rhoRWVars = c(),
+  rhoSpatialVar = NULL,
+  multiRun = FALSE,
+  catchTotal = TRUE,
+  catchRange = FALSE,
+  qUnif = FALSE
+)
 }
 \arguments{
 \item{filename}{the name or the \acronym{BUGS} model file to create.}

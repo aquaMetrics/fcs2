@@ -16,6 +16,12 @@ phyperprior(q, a, b, lower.tail = TRUE)
 qhyperprior(p, a, b)
 
 rhyperprior(n, a, b)
+
+phyperprior(q, a, b, lower.tail = TRUE)
+
+qhyperprior(p, a, b)
+
+rhyperprior(n, a, b)
 }
 \arguments{
 \item{x}{vector of quantiles.}

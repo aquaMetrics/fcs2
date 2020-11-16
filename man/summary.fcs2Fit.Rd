@@ -4,9 +4,14 @@
 \alias{summary.fcs2Fit}
 \title{Detailed summary}
 \usage{
-\method{summary}{fcs2Fit}(object, prior = TRUE,
-  inla = is.null(object$bugsFit), posterior = !is.null(object$bugsFit),
-  allVars = FALSE, ...)
+\method{summary}{fcs2Fit}(
+  object,
+  prior = TRUE,
+  inla = is.null(object$bugsFit),
+  posterior = !is.null(object$bugsFit),
+  allVars = FALSE,
+  ...
+)
 }
 \arguments{
 \item{object}{summary object}

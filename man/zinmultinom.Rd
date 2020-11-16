@@ -10,6 +10,8 @@
 dzinmultinom(x, size, prob, zeroprob, nmmean)
 
 rzinmultinom(n, size, prob, zeroprob, nmmean)
+
+rzinmultinom(n, size, prob, zeroprob, nmmean)
 }
 \arguments{
 \item{x}{x}

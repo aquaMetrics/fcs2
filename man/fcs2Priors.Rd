@@ -4,8 +4,7 @@
 \alias{fcs2Priors}
 \title{Prior Distributions in the FCS2 Model}
 \usage{
-fcs2Priors(parameters = list(), print = TRUE, plot = TRUE,
-  prob = 0.95, ...)
+fcs2Priors(parameters = list(), print = TRUE, plot = TRUE, prob = 0.95, ...)
 }
 \arguments{
 \item{parameters}{a named list of named vectors, each specifying the

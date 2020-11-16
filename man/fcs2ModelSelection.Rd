@@ -4,13 +4,26 @@
 \alias{fcs2ModelSelection}
 \title{Automated Model Selection}
 \usage{
-fcs2ModelSelection(runTotalVars = NULL, allRunsTotalVar = NULL,
-  allRunsRangeVars = NULL, dataFrame, surveyAreaVar = "SurveyArea",
-  nRunsVar = NULL, muVars, muVarType, rhoVars = muVars,
-  rhoVarType = muVarType, rhoFormula, subset = 1:nrow(dataFrame),
-  tolerance = 0.01, maxNoOrders = 3, nSweeps = 1,
-  prior.parameters = list(), estAllRunsTotalVar = NULL,
-  verbose = FALSE)
+fcs2ModelSelection(
+  runTotalVars = NULL,
+  allRunsTotalVar = NULL,
+  allRunsRangeVars = NULL,
+  dataFrame,
+  surveyAreaVar = "SurveyArea",
+  nRunsVar = NULL,
+  muVars,
+  muVarType,
+  rhoVars = muVars,
+  rhoVarType = muVarType,
+  rhoFormula,
+  subset = 1:nrow(dataFrame),
+  tolerance = 0.01,
+  maxNoOrders = 3,
+  nSweeps = 1,
+  prior.parameters = list(),
+  estAllRunsTotalVar = NULL,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{runTotalVars}{a character vector of columns in \code{dataFrame} that

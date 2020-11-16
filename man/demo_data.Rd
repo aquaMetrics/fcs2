@@ -4,7 +4,9 @@
 \name{demo_data}
 \alias{demo_data}
 \title{Demo data}
-\format{A data frame.}
+\format{
+A data frame.
+}
 \usage{
 demo_data
 }

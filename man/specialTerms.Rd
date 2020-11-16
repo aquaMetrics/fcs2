@@ -16,6 +16,25 @@ rw2(val, noLevels = 10, boundaries, scale.parameters,
 
 spatial(val, adjacency, scale.parameters, precision.parameters,
   initial.values, precision.initial.value)
+
+rw2(
+  val,
+  noLevels = 10,
+  boundaries,
+  scale.parameters,
+  precision.parameters,
+  initial.values,
+  precision.initial.value
+)
+
+spatial(
+  val,
+  adjacency,
+  scale.parameters,
+  precision.parameters,
+  initial.values,
+  precision.initial.value
+)
 }
 \arguments{
 \item{val}{a covariate to use for the non-linear term.  \code{rw1} and

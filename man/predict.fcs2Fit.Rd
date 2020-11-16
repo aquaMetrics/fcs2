@@ -4,8 +4,7 @@
 \alias{predict.fcs2Fit}
 \title{Predicted Total Catch}
 \usage{
-\method{predict}{fcs2Fit}(object, newData, subset = 1:nrow(newData),
-  na.action, mu, rho, ...)
+\method{predict}{fcs2Fit}(object, newData, subset = 1:nrow(newData), na.action, mu, rho, ...)
 }
 \arguments{
 \item{object}{an \code{"fcs2Fit"} object containing a full \acronym{FCS2}
