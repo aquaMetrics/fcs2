@@ -12,16 +12,14 @@ Imports:
     grDevices,
     utils,
     stats,
-    INLA,
     R2OpenBUGS
 Suggests:
     BRugs,
     maptools,
     rpanel,
     sp,
-    testthat (>= 2.1.0)
-Remotes:
-    inbo/INLA
+    testthat (>= 2.1.0),
+    INLA
 SystemRequirements: OpenBUGS (available via BRugs)
 License: GPL-3 + file LICENSE
 LazyData: true
